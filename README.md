@@ -2,6 +2,9 @@
 
 Este proyecto es una tienda en línea desarrollada como parte de las materias Formulación y Evaluación de Proyectos y Aseguramiento de la Calidad de Software y Pruebas de Ingeniería Informática de la Institución Universitaria Colegio Mayor del Cauca. Permite gestionar libros mediante operaciones CRUD, gestionar usuarios y procesar pagos utilizando la API de Mercado Pago.
 
+Visitala en:
+https://tiendalibrosunimayor.web.app/
+
 ## Descripción del Proyecto
 
 La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión de libros en línea. Proporciona a los usuarios la capacidad de explorar un catálogo de libros, realizar compras seguras utilizando la integración con la API de Mercado Pago, y gestionar cuentas de usuario.
