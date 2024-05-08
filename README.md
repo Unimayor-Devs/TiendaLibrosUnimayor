@@ -9,10 +9,12 @@ La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión d
 ## Tecnologías Utilizadas
 
 - **Backend**:
+  - JavaScript
   - Node.js
   - Firebase (Firestore para la base de datos)
 
 - **Frontend**:
+  - JavaScript
   - React
   - HTML
   - CSS
