@@ -31,3 +31,35 @@ La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión d
 ### Frontend (React)
 
 - `react`: Biblioteca de JavaScript para construir interfaces de usuario.
+
+## Instalación y Configuración
+
+Sigue estos pasos para configurar y ejecutar el proyecto localmente:
+
+### 1. Instalar node.js y npm (Administrador de paquetes de Node.js)
+Puedes verificar la instalación con
+```bash
+node --version
+npm --version
+```
+
+### 2. Instalación de FirebaseCli
+```bash
+npm install -g firebase-tools
+```
+
+### 3. Clonar este repositorio
+- Puedes clonar este repositorio con este código
+```bash
+git clone https://github.com/Unimayor-Devs/TiendaLibrosUnimayor.git
+cd TiendaLibrosUnimayor
+```
+
+- O también puedes utilizar la herramienta GitHub Desktop
+https://desktop.github.com/
+
+### 4. Ejecución local del Frontend
+```bash
+cd frontend
+npm start
+```
