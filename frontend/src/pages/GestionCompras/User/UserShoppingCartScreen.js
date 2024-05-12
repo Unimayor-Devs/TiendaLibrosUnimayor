@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ShoppingCartScreen = () => {
+const UserShoppingCartScreen = () => {
   const [cartItems, setCartItems] = useState([
     { id: 1, title: 'Libro 1', price: 10.99, quantity: 1 },
     { id: 2, title: 'Libro 2', price: 12.99, quantity: 2 },
@@ -27,4 +27,4 @@ const ShoppingCartScreen = () => {
   );
 };
 
-export default ShoppingCartScreen;
+export default UserShoppingCartScreen;

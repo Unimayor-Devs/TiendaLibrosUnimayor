@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BooksScreen = () => {
+const AdminBooksScreen = () => {
   // Datos simulados de libros (esto puede ser dinámico obtenido de una API)
   const books = [
     { id: 1, title: 'El principito', author: 'Antoine de Saint-Exupéry', genre: 'Fábula', price: 10.99 },
@@ -22,4 +22,4 @@ const BooksScreen = () => {
   );
 };
 
-export default BooksScreen;
+export default AdminBooksScreen;
