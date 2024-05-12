@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InventoryScreen = () => {
+const AdminInventoryScreen = () => {
   // Datos simulados de inventario (esto puede ser dinámico obtenido de una API)
   const inventoryItems = [
     { id: 1, code: '001', title: 'Teclado', quantity: 20, price: 29.99 },
@@ -22,4 +22,4 @@ const InventoryScreen = () => {
   );
 };
 
-export default InventoryScreen;
+export default AdminInventoryScreen;

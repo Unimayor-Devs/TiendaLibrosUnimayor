@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CheckoutScreen = () => {
+const UserCheckoutScreen = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const handleCheckout = () => {
@@ -28,4 +28,4 @@ const CheckoutScreen = () => {
   );
 };
 
-export default CheckoutScreen;
+export default UserCheckoutScreen;

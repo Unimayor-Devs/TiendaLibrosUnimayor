@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const UsersScreen = () => {
+const AdminUsersScreen = () => {
   const [users, setUsers] = useState([
     { id: 1, name: 'Juan', email: 'juan@example.com', city: 'Bogotá' },
     { id: 2, name: 'Maria', email: 'maria@example.com', city: 'Medellín' },
@@ -27,4 +27,4 @@ const UsersScreen = () => {
   );
 };
 
-export default UsersScreen;
+export default AdminUsersScreen;
