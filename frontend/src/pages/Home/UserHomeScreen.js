@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate desde react-router-dom
 
-const HomeScreen = () => {
+const UserHomeScreen = () => {
   const auth = getAuth(); // Obtener el objeto de autenticación de Firebase
   const navigate = useNavigate(); // Obtener la función navigate desde react-router-dom
 
@@ -36,4 +36,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default UserHomeScreen;
