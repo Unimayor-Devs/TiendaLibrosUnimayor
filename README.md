@@ -58,13 +58,7 @@ cd TiendaLibrosUnimayor
 - O también puedes utilizar la herramienta GitHub Desktop
 https://desktop.github.com/
 
-### 5. Ejecución local Backend (Firebase Functions)
-```bash
-cd backend/functions
-npm run serve
-```
-
-### 5. Ejecución local Frontend (React)
+### 4. Ejecución local Frontend (React)
 ```bash
 cd frontend
 npm start
