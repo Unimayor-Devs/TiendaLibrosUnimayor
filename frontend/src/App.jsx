@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, createBrowserRouter, RouterProvider } from 'react-router-dom';
-import WelcomeScreen from './pages/Publico/WelcomeScreen'; 
-import SignInScreen from './pages/Publico/SignInScreen';
-import SignUpScreen from './pages/Publico/SignUpScreen'; 
-import UsersScreen from './pages/Administrador/AdminUsersScreen'; 
-import BooksScreen from './pages/Usuario/UserBooksScreen';  
-import InventoryScreen from './pages/Administrador/AdminInventoryScreen';  
-import ShoppingCartScreen from './pages/Usuario/UserShoppingCartScreen'; 
-import CheckoutScreen from './pages/Usuario/UserCheckoutScreen';  
-import HomeScreen from './pages/Usuario/UserHomeScreen'; 
-import { UserProtected } from './pages/Usuario/UserProtected';
-import { AuthContext } from './context/AuthContex';
+import WelcomeScreen from './pages/Public/WelcomeScreen'; 
+import SignInScreen from './pages/GestionUsuarios/Public/SignInScreen';
+import SignUpScreen from './pages/GestionUsuarios/Public/SignUpScreen';
+import UsersScreen from './pages/GestionUsuarios/Admin/AdminUsersScreen'; 
+import BooksScreen from './pages/GestionLibros/User/UserBooksScreen';  
+import InventoryScreen from './pages/GestionCompras/Admin/AdminInventoryScreen';  
+import ShoppingCartScreen from './pages/GestionCompras/User/UserShoppingCartScreen'; 
+import CheckoutScreen from './pages/GestionCompras/User/UserCheckoutScreen';  
+import UserHomeScreen from './pages/Home/UserHomeScreen'; 
+import { UserProtected } from './pages/GestionUsuarios/User/UserProtected';
+import { AuthContext } from './context/AuthContext';
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
     },
     {
       path: "/home",
-      element: <UserProtected><HomeScreen/></UserProtected>
+      element: <UserProtected><UserHomeScreen/></UserProtected>
     },
     {
       path: "/users",
