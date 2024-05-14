@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../../../components/Navbar';
 
 const UserInventoryScreen = () => {
   // Datos simulados de inventario (esto puede ser dinámico obtenido de una API)
@@ -10,6 +11,7 @@ const UserInventoryScreen = () => {
 
   return (
     <div>
+      <Navbar/> {/* Renderiza la barra de navegación */}
       <h2>Inventario</h2>
       <ul>
         {inventoryItems.map(item => (

@@ -9,6 +9,9 @@ import SignInScreen from './pages/GestionUsuarios/Public/SignInScreen';
 import SignUpScreen from './pages/GestionUsuarios/Public/SignUpScreen';
 import AdminUsersScreen from './pages/GestionUsuarios/Admin/AdminUsersScreen'; 
 import UsersScreen from './pages/GestionUsuarios/User/UsersScreen';
+import EditUserScreen from './pages/GestionUsuarios/User/EditUserScreen';
+import ChangeEmail from './pages/GestionUsuarios/User/ChangeEmail';
+import ChangePassword from './pages/GestionUsuarios/User/ChangePassword';
 
 //Home (Autenticacion)
 import UserHomeScreen from './pages/Home/UserHomeScreen';
@@ -23,7 +26,6 @@ import AdminInventoryScreen from './pages/GestionCompras/Admin/AdminInventoryScr
 import UserInventoryScreen from './pages/GestionCompras/User/UserInventoryScreen';
 import UserShoppingCartScreen from './pages/GestionCompras/User/UserShoppingCartScreen'; 
 import UserCheckoutScreen from './pages/GestionCompras/User/UserCheckoutScreen';  
-
 
 import { UserProtected } from './pages/GestionUsuarios/User/UserProtected';
 import { AuthContext } from './context/AuthContext';
@@ -61,7 +63,19 @@ function App() {
       path: "/users",
       element: <UsersScreen></UsersScreen>
     },
-    //Gestión de Usuarios
+    {
+      path: "/users/:userId/edit",
+      element: <EditUserScreen></EditUserScreen>
+    },
+    {
+      path: "/users/:userId/edit/email",
+      element: <ChangeEmail ></ChangeEmail >
+    },
+    {
+      path: "/users/:userId/edit/password",
+      element: <ChangePassword ></ChangePassword >
+    },
+    //Gestión de Libros
       //Admin
     {
       path: "/admin-books",

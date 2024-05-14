@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../../../components/Navbar';
 
 const UserBooksScreen = () => {
   // Datos simulados de libros (esto puede ser dinámico obtenido de una API)
@@ -10,6 +11,7 @@ const UserBooksScreen = () => {
 
   return (
     <div>
+      <Navbar/> {/* Renderiza la barra de navegación */}
       <h2>Lista de Libros</h2>
       <ul>
         {books.map(book => (
