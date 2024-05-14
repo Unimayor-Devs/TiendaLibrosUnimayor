@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaSignInAlt, FaUserPlus } from 'react-icons/fa'; // Importa iconos de Font Awesome
+import './Welcome.css'; // Importa el archivo de estilos CSS
 
 function WelcomeScreen() {
   return (
-    <div>
-      <h1>Bienvenido a Tienda de Libros Unimayor</h1>
+    <div className="welcome-container">
+      <h1 className="welcome-title">Bienvenido a Tienda de Libros Unimayor</h1>
       <p>Seleccione una opción:</p>
-      <ul>
-        <li>
-          <Link to="/sigin">Iniciar sesión</Link>
-        </li>
-        <li>
-          <Link to="/signup">Registrarse</Link>
-        </li>
-      </ul>
+      <div>
+        <Link className="welcome-button" to="/sigin">
+          <FaSignInAlt /> Iniciar sesión
+        </Link>
+        <Link className="welcome-button" to="/signup">
+          <FaUserPlus /> Registrarse
+        </Link>
+      </div>
     </div>
   );
 }

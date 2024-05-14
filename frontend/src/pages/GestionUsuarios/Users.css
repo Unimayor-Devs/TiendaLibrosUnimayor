@@ -1,3 +1,8 @@
+.required {
+  color: red; /* Cambia el color del asterisco */
+  margin-left: 4px; /* Añade espacio entre la etiqueta y el asterisco */
+}
+
 /* Estilos para el contenedor principal de usuarios */
 .users-container {
   margin: 5px; /* Márgenes externos */
@@ -210,6 +215,29 @@ input[type="password"] {
   color: white;
 }
 
+/* Estilo para el contenedor del botón de registro */
+.register-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacio superior para separar del contenido superior */
+}
+
+/* Estilo para el botón de registro */
+.register-button {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Azul fuerte como fondo */
+  color: #FFFFFF; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Estilo para el botón de registro cuando se le aplica hover */
+.register-button:hover {
+  background-color: #0056b3; /* Cambio de color en hover */
+}
+
 .email-cancel-button {
   background-color: #dc3545; /* Color rojo para el botón Cancelar */
   color: white;
@@ -229,8 +257,74 @@ input[type="password"] {
   margin-bottom: 20px;
 }
 
+.forgot-password a {
+  color: #007bff; /* Color azul típico de los enlaces */
+  text-decoration: underline; /* Subrayado como un enlace */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+}
+
+.forgot-password a:hover {
+  text-decoration: none; /* Elimina el subrayado al pasar sobre el enlace */
+}
+
 .input-container {
   margin-bottom: 15px;
+}
+
+.signin-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.password-submit-button,
+.password-cancel-button,
+.signin-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.password-submit-button:hover,
+.password-cancel-button:hover,
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  text-align: center;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
 }
 
 .input-container label {
@@ -315,4 +409,27 @@ input[type="password"] {
 
 .signup-container button:hover {
   background-color: #0056b3;
+}
+
+/* Estilo para el contenedor del botón de retorno */
+.return-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacio superior para separar del contenido superior */
+}
+
+/* Estilo para el botón de retorno */
+.return-button {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Azul fuerte como fondo */
+  color: #FFFFFF; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Estilo para el botón de retorno cuando se le aplica hover */
+.return-button:hover {
+  background-color: #0056b3; /* Cambio de color en hover */
 }

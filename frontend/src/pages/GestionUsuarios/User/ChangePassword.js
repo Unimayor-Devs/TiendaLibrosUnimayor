@@ -12,16 +12,57 @@ const ChangePassword = () => {
   const auth = getAuth();
   const user = auth.currentUser;
 
+  const validatePassword = (password) => {
+    const errors = {};
+  
+    if (password.length < 8) {
+      errors.lengthError = 'La contraseña debe tener al menos 8 caracteres.';
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      errors.lowercaseError = 'La contraseña debe contener al menos una letra minúscula.';
+    }
+  
+    if (!/[A-Z]/.test(password)) {
+      errors.uppercaseError = 'La contraseña debe contener al menos una letra mayúscula.';
+    }
+  
+    if (!/\d/.test(password)) {
+      errors.numberError = 'La contraseña debe contener al menos un número.';
+    }
+  
+    if (!/[^a-zA-Z0-9]/.test(password)) {
+      errors.specialCharError = 'La contraseña debe contener al menos un carácter especial (por ejemplo, !@#$%^&*).';
+    }
+  
+    if (/\s/.test(password)) {
+      errors.spaceError = 'La contraseña no debe contener espacios.';
+    }
+  
+    return errors;
+  };
+
   const handlePasswordChange = async (e) => {
     e.preventDefault();
-
+  
     if (newPassword !== confirmPassword) {
       setErrorMessage('Las contraseñas no coinciden');
       return;
     }
-
+  
+    const passwordErrors = validatePassword(newPassword);
+  
+    if (Object.keys(passwordErrors).length > 0) {
+      // Construir mensaje de error combinando todos los errores
+      const errorMessage = Object.values(passwordErrors).join(' ');
+      setErrorMessage(errorMessage);
+      return;
+    }
+  
+    const auth = getAuth();
+    const user = auth.currentUser;
     const credential = EmailAuthProvider.credential(user.email, currentPassword);
-
+  
     try {
       await reauthenticateWithCredential(user, credential);
       await updatePassword(user, newPassword);
@@ -37,6 +78,7 @@ const ChangePassword = () => {
       console.error(error);
     }
   };
+  
 
   return (
     <div className="password-container">

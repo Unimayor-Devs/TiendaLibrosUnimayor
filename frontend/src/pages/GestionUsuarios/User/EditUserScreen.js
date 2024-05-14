@@ -58,6 +58,13 @@ const EditUserScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Validar longitud del número de teléfono
+    if (formData.phoneNumber.length !== 10) {
+      alert('El número de teléfono debe tener exactamente 10 dígitos.');
+      return;
+    }
+  
     try {
       await updateUser(userId, formData);
       alert('Usuario actualizado correctamente.');
@@ -94,7 +101,17 @@ const EditUserScreen = () => {
         </label>
         <label>
           Celular:
-          <input type="text" value={formData.phoneNumber} onChange={(e) => handleInputChange('phoneNumber', e.target.value)} />
+          <input
+            type="text"
+            value={formData.phoneNumber}
+            onChange={(e) => {
+              const inputPhoneNumber = e.target.value.replace(/\D/g, ''); // Elimina caracteres que no sean dígitos
+              const validatedPhoneNumber = inputPhoneNumber.slice(0, 10); // Limita a un máximo de 10 dígitos
+              handleInputChange('phoneNumber', validatedPhoneNumber); // Actualiza el estado con el número validado
+            }}
+            placeholder="Teléfono"
+            required
+          />
         </label>
         <label>
           Departamento:

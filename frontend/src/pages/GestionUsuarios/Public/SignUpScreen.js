@@ -18,6 +18,36 @@ const SignUpScreen = () => {
   const navigate = useNavigate();
   const db = getFirestore(); // Obtiene una referencia a Firestore
 
+  const validatePassword = (password) => {
+    const errors = {};
+  
+    if (password.length < 8) {
+      errors.lengthError = 'La contraseña debe tener al menos 8 caracteres.';
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      errors.lowercaseError = 'La contraseña debe contener al menos una letra minúscula.';
+    }
+  
+    if (!/[A-Z]/.test(password)) {
+      errors.uppercaseError = 'La contraseña debe contener al menos una letra mayúscula.';
+    }
+  
+    if (!/\d/.test(password)) {
+      errors.numberError = 'La contraseña debe contener al menos un número.';
+    }
+  
+    if (!/[^a-zA-Z0-9]/.test(password)) {
+      errors.specialCharError = 'La contraseña debe contener al menos un carácter especial (por ejemplo, !@#$%^&*).';
+    }
+  
+    if (/\s/.test(password)) {
+      errors.spaceError = 'La contraseña no debe contener espacios.';
+    }
+  
+    return errors;
+  };
+
   // Función para obtener la lista de departamentos desde Firestore
   const fetchDepartments = async () => {
     try {
@@ -37,9 +67,25 @@ const SignUpScreen = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    // Validar longitud del número de teléfono
+    if (phoneNumber.length !== 10) {
+      setError('El número de teléfono debe tener exactamente 10 dígitos.');
+      return;
+    }
   
     if (password !== passwordConfirmation) {
       setError('Las contraseñas no coinciden.');
+      return;
+    }
+  
+    const passwordErrors = validatePassword(password);
+  
+    if (Object.keys(passwordErrors).length > 0) {
+      // Construir mensaje de error combinando todos los errores
+      const errorMessage = Object.values(passwordErrors).join(' ');
+  
+      setError(errorMessage);
       return;
     }
   
@@ -85,8 +131,8 @@ const SignUpScreen = () => {
     <div className="signup-container">
       <h1>Registro de Usuario</h1>
       <form onSubmit={handleSignUp}>
-        <div className="input-container">
-          <label>Nombre:</label>
+      <div className="input-container">
+          <label>Nombre <span className="required">*</span>:</label>
           <input
             type="text"
             value={firstName}
@@ -96,7 +142,7 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Apellido:</label>
+          <label>Apellido <span className="required">*</span>:</label>
           <input
             type="text"
             value={lastName}
@@ -106,7 +152,7 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Email:</label>
+          <label>Email <span className="required">*</span>:</label>
           <input
             type="email"
             value={email}
@@ -116,7 +162,7 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Contraseña:</label>
+          <label>Contraseña <span className="required">*</span>:</label>
           <input
             type="password"
             value={password}
@@ -126,7 +172,7 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Verificar Contraseña:</label>
+          <label>Verificar Contraseña <span className="required">*</span>:</label>
           <input
             type="password"
             value={passwordConfirmation}
@@ -136,17 +182,23 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Teléfono:</label>
+          <label>Teléfono <span className="required">*</span>:</label>
           <input
-            type="text"
+            type="tel"
+            pattern="[0-9]*"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => {
+              const validatedValue = e.target.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+              if (validatedValue.length <= 10) {
+                setPhoneNumber(validatedValue); // Actualizar el estado solo si la longitud es válida
+              }
+            }}
             placeholder="Teléfono"
             required
           />
         </div>
         <div className="input-container">
-          <label>Ciudad:</label>
+          <label>Ciudad <span className="required">*</span>:</label>
           <input
             type="text"
             value={city}
@@ -156,7 +208,7 @@ const SignUpScreen = () => {
           />
         </div>
         <div className="input-container">
-          <label>Departamento:</label>
+          <label>Departamento <span className="required">*</span>:</label>
           <select
             value={department}
             onChange={(e) => setDepartment(e.target.value)}
@@ -173,8 +225,13 @@ const SignUpScreen = () => {
           </select>
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit">Registrarse</button>
+        <div className="register-button-container">
+          <button type="submit" className="register-button">Registrarse</button>
+        </div>
       </form>
+      <div className="return-button-container">
+          <button className="return-button" onClick={() => navigate('/')}>Volver a la página principal</button>
+        </div>
     </div>
   );
 };
