@@ -1,0 +1,318 @@
+/* Estilos para el contenedor principal de usuarios */
+.users-container {
+  margin: 5px; /* Márgenes externos */
+}
+
+/* Estilos para el contenido de usuarios */
+.users-content {
+  padding: 10px; /* Espaciado interno */
+}
+
+/* Estilos adicionales según tus necesidades */
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.user-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px; /* Espaciado interno */
+  box-sizing: border-box; /* Incluye el borde en el tamaño total */
+  margin: 10px; /* Márgenes uniformes alrededor de la tarjeta */
+  width: calc(50% - 20px); /* Ancho calculado para dos tarjetas por fila */
+}
+
+.user-info {
+  margin-bottom: 10px;
+}
+
+.user-actions {
+  display: flow-root;
+  justify-content: center;
+}
+
+/* Estilos para los botones de editar y eliminar */
+.edit-button,
+.delete-button {
+  padding: 8px 16px; /* Espaciado interno del botón */
+  margin-right: 10px; /* Margen derecho entre los botones */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los botones */
+  border: none; /* Elimina el borde del botón */
+  border-radius: 4px; /* Establece bordes redondeados */
+  color: white; /* Color del texto de los botones */
+}
+
+/* Estilos para el botón de editar */
+.edit-button {
+  background-color: #007bff; /* Color amarillo para el botón editar */
+}
+
+/* Estilos para el botón de borrar */
+.delete-button {
+  background-color: #dc3545; /* Color rojo para el botón borrar */
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    width: 100%; /* Ancho completo en pantallas más pequeñas */
+  }
+}
+
+.users-container {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.users-content {
+  margin-bottom: 20px;
+}
+
+.users-content label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.users-content input,
+.users-content select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.edit-button {
+  background-color: #007bff; /* Color amarillo para el botón Editar */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Color rojo para el botón Borrar */
+}
+
+@media (max-width: 768px) {
+  .users-container {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .users-content {
+    margin-bottom: 10px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 8px 12px;
+  }
+}
+
+.password-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.password-submit-button,
+.password-cancel-button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  width: fit-content; /* Ajusta el ancho al contenido */
+  margin-bottom: 15px;
+}
+
+.password-submit-button {
+  background-color: #007bff; /* Color azul para el botón Guardar */
+  color: white;
+  margin-right: 10px;
+}
+
+.password-cancel-button {
+  background-color: #dc3545; /* Color rojo para el botón Cancelar */
+  color: white;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.email-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.email-form label {
+  margin-bottom: 10px;
+}
+
+.email-form input[type="email"],
+.email-form input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.email-submit-button,
+.email-cancel-button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  width: fit-content; /* Ajusta el ancho al contenido */
+  margin-bottom: 15px;
+}
+
+.email-submit-button {
+  background-color: #007bff; /* Color azul para el botón Actualizar Correo Electrónico */
+  color: white;
+}
+
+.email-cancel-button {
+  background-color: #dc3545; /* Color rojo para el botón Cancelar */
+  color: white;
+}
+
+.signin-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.signin-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-container input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.signin-container button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signin-container button:hover {
+  background-color: #0056b3;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.signup-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-container input,
+.input-container select {
+  padding: 8px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.error-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+}
+
+.signup-container button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signup-container button:hover {
+  background-color: #0056b3;
+}

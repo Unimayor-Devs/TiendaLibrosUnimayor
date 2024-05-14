@@ -1,28 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getUsers, deleteUser } from '../../../services/userService';
+import { useNavigate } from 'react-router-dom';
+import '../Users.css';
+import { getAuth } from 'firebase/auth'; // Importa getAuth de firebase/auth
+import Navbar from '../../../components/Navbar';
 
 const UsersScreen = () => {
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Juan', email: 'juan@example.com', city: 'Bogotá' },
-    { id: 2, name: 'Maria', email: 'maria@example.com', city: 'Medellín' },
-    { id: 3, name: 'Pedro', email: 'pedro@example.com', city: 'Cali' },
-  ]);
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const auth = getAuth(); // Crea la instancia de autenticación
+  const currentUser = auth.currentUser; // Obtiene el usuario actualmente autenticado
 
-  const handleDeleteUser = (userId) => {
-    const updatedUsers = users.filter(user => user.id !== userId);
-    setUsers(updatedUsers);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const userData = await getUsers();
+        setUsers(userData);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleDeleteUser = async (userId, fullName) => {
+    if (currentUser && currentUser.emailVerified) {
+      const confirmDelete = window.confirm(`¿Estás seguro que quieres eliminar a "${fullName}"?`);
+      if (confirmDelete) {
+        try {
+          const deleted = await deleteUser(userId);
+          if (deleted) {
+            setUsers(users.filter(user => user.id !== userId));
+          }
+        } catch (error) {
+          console.error('Error deleting user:', error);
+        }
+      }
+    } else {
+      alert('No tienes permisos para eliminar usuarios, verifica primero tu email.');
+    }
   };
 
+  const handleEditUser = (userId) => {
+    navigate(`/users/${userId}/edit`);
+  };
+  
   return (
     <div>
-      <h2>Lista de Usuarios</h2>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            <strong>{user.name}</strong> - {user.email} - Ciudad: {user.city}
-            <button onClick={() => handleDeleteUser(user.id)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
+      <Navbar /> {/* Renderiza la barra de navegación */}
+      <div className="users-container"> {/* Contenedor principal con margen */}
+        <div className="users-content"> {/* Contenido de usuarios con espacio interno */}
+          <h1>Usuarios</h1> {/* Título de la página */}
+          <div className="user-list">
+            {users.map(user => (
+              <div key={user.id} className="user-card">
+                <div className="user-info">
+                  <p>Nombre: {user.firstName} {user.lastName}</p>
+                  <p>Correo: {user.email}</p>
+                </div>
+                {currentUser && currentUser.uid === user.id && (
+                  <div className="user-actions">
+                    <button className="edit-button" onClick={() => handleEditUser(user.id)}>Editar</button>
+                    <button className="delete-button" onClick={() => handleDeleteUser(user.id, `${user.firstName} ${user.lastName}`)}>Borrar</button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

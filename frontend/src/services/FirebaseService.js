@@ -17,10 +17,10 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 // Obtener el objeto de autenticación (auth) de Firebase
-const firebaseAuth = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 // Obtener el objeto de Firestore
 const firebaseFirestore = getFirestore(firebaseApp);
 
 // Exportar autenticación y Firestore
-export { firebaseAuth, firebaseFirestore };
+export { auth, firebaseFirestore };

@@ -25,10 +25,10 @@ const SignInScreen = () => {
   };
 
   return (
-    <div>
-      <h1>Página de Inicio de Sesión</h1>
+    <div className="signin-container">
+      <h1>Inicio de Sesión</h1>
       <form onSubmit={handleSignIn}>
-        <div>
+        <div className="input-container">
           <label>Email:</label>
           <input
             type="email"
@@ -38,7 +38,7 @@ const SignInScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Contraseña:</label>
           <input
             type="password"
@@ -48,7 +48,7 @@ const SignInScreen = () => {
             required
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Iniciar Sesión</button>
       </form>
     </div>

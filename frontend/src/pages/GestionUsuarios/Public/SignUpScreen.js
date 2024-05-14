@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore'; // Importa Firestore
+import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firestore'; // Importa Firestore
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');
@@ -37,18 +37,21 @@ const SignUpScreen = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+  
     if (password !== passwordConfirmation) {
       setError('Las contraseñas no coinciden.');
       return;
     }
-
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Agregar datos del usuario a la colección "users" en Firestore
-      await addDoc(collection(db, 'users'), {
+      // Enviar correo de verificación al usuario
+      await sendEmailVerification(user);
+  
+      // Crear un nuevo documento en la colección "users" con el UID del usuario como ID de documento
+      await setDoc(doc(db, 'users', user.uid), {
         userId: user.uid,
         firstName,
         lastName,
@@ -57,7 +60,7 @@ const SignUpScreen = () => {
         city,
         department,
       });
-
+  
       // Reiniciar campos después del registro
       setEmail('');
       setPassword('');
@@ -68,7 +71,7 @@ const SignUpScreen = () => {
       setCity('');
       setDepartment('');
       setError(null);
-
+  
       console.log('Usuario registrado:', user);
       console.log('Datos del usuario almacenados en la colección "users".');
       navigate('/home');
@@ -76,13 +79,13 @@ const SignUpScreen = () => {
       console.error('Error al registrar usuario:', error.message);
       setError('Error al registrar usuario. Por favor, inténtalo de nuevo.');
     }
-  };
+  };  
 
   return (
-    <div>
+    <div className="signup-container">
       <h1>Registro de Usuario</h1>
       <form onSubmit={handleSignUp}>
-        <div>
+        <div className="input-container">
           <label>Nombre:</label>
           <input
             type="text"
@@ -92,7 +95,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Apellido:</label>
           <input
             type="text"
@@ -102,7 +105,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Email:</label>
           <input
             type="email"
@@ -112,7 +115,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Contraseña:</label>
           <input
             type="password"
@@ -122,7 +125,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Verificar Contraseña:</label>
           <input
             type="password"
@@ -132,7 +135,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Teléfono:</label>
           <input
             type="text"
@@ -142,7 +145,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Ciudad:</label>
           <input
             type="text"
@@ -152,7 +155,7 @@ const SignUpScreen = () => {
             required
           />
         </div>
-        <div>
+        <div className="input-container">
           <label>Departamento:</label>
           <select
             value={department}
@@ -169,7 +172,7 @@ const SignUpScreen = () => {
             ))}
           </select>
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Registrarse</button>
       </form>
     </div>
