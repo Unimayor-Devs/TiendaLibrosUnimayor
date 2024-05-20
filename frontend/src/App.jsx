@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 //Pantalla Bienvenida
 import WelcomeScreen from './pages/Public/WelcomeScreen'; 
 
@@ -15,11 +14,14 @@ import ChangePassword from './pages/GestionUsuarios/User/ChangePassword';
 
 //Home (Autenticacion)
 import UserHomeScreen from './pages/Home/UserHomeScreen';
-
+//--------------------------------------------------------------------------------------------------------------------------
 //Gestión de Libros
 import UserBooksScreen from './pages/GestionLibros/User/UserBooksScreen';
 import AdminBooksScreen from './pages/GestionLibros/Admin/AdminBooksScreen';
+import AddBookScreen from './pages/GestionLibros/Admin/AddBookScreen';
+import EditBooksScreen from './pages/GestionLibros/Admin/EditBooksScreen';
 
+//--------------------------------------------------------------------------------------------------------------------------
 //Gestión de Inventario y Compras
 import AdminInventoryScreen from './pages/GestionCompras/Admin/AdminInventoryScreen';
 
@@ -75,17 +77,32 @@ function App() {
       path: "/users/:userId/edit/password",
       element: <ChangePassword ></ChangePassword >
     },
+    //----------------------------------------------------------------------------------------------------
     //Gestión de Libros
       //Admin
     {
-      path: "/admin-books",
+      path: "/admin-books-screen",
       element: <AdminBooksScreen></AdminBooksScreen>
     },
+    {
+      path: "/add-books-screen",
+      element: <AddBookScreen></AddBookScreen>
+    },
+    {
+      path: "/edit-books-screen",
+      element: <EditBooksScreen></EditBooksScreen>
+    },
+  
+  
       //User
+  
     {
       path: "/books",
       element: <UserBooksScreen></UserBooksScreen>
     },
+    
+
+     //----------------------------------------------------------------------------------------------------
     //Gestión de Inventario y Compras
       //Admin
     {
@@ -108,9 +125,11 @@ function App() {
   ])
 
   return(
-    <AuthContext>
+   
+      <AuthContext>
       <RouterProvider router={router}></RouterProvider>
     </AuthContext>
+  
   );
 }
 
