@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import '../Users.css'; // Importa tu archivo de estilos CSS
+//import '../Users.css'; // Importa tu archivo de estilos CSS
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('');
@@ -64,7 +64,7 @@ const SignInScreen = () => {
       <h1>{showForgotPassword ? 'Reestablecimiento de Contraseña' : 'Inicio de Sesión'}</h1>
       {showForgotPassword ? (
         <form onSubmit={handleResetPassword}>
-          <div className="input-container">
+          <div>
             <label>Ingrese su correo electrónico:</label>
             <input
               type="email"
@@ -74,16 +74,16 @@ const SignInScreen = () => {
               required
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="password-submit-button">Reestablecer Contraseña</button>
+          {error && <p>{error}</p>}
+          <button type="submit" style={{ backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', padding: '10px 15px', cursor: 'pointer', transition: 'background-color 0.3s, opacity 0.3s', marginBottom: '10px' }}>Reestablecer Contraseña</button>
           <div>
-            <button type="button" className="password-cancel-button" onClick={handleReturnToSignIn}>Volver</button>
+            <button type="button" style={{ backgroundColor: '#6c757d', color: '#fff', borderRadius: '4px', padding: '10px 15px', cursor: 'pointer', transition: 'background-color 0.3s, opacity 0.3s' }} onClick={handleReturnToSignIn}>Volver</button>
           </div>
         </form>
       ) : (
         <form onSubmit={handleSignIn}>
-          <div className="input-container">
-            <label>Email:</label>
+          <div>
+            <label>Email</label>
             <input
               type="email"
               value={email}
@@ -92,8 +92,8 @@ const SignInScreen = () => {
               required
             />
           </div>
-          <div className="input-container">
-            <label>Contraseña:</label>
+          <div>
+            <label>Contraseña</label>
             <input
               type="password"
               value={password}
@@ -102,16 +102,16 @@ const SignInScreen = () => {
               required
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="signin-button">Iniciar Sesión</button>
-          <div className="forgot-password">
-            <a href="#" onClick={handleShowForgotPassword}>Olvidé mi contraseña</a>
+          {error && <p>{error}</p>}
+          <button type="submit" style={{ backgroundColor: '#007bff', color: '#fff', borderRadius: '4px', padding: '10px 15px', cursor: 'pointer', transition: 'background-color 0.3s, opacity 0.3s', marginBottom: '10px' }}>Iniciar Sesión</button>
+          <div>
+            <a href="#" style={{ textAlign: 'center', textDecoration: 'none', color: '#007bff' }} onClick={handleShowForgotPassword}>Olvidé mi contraseña</a>
           </div>
         </form>
       )}
       {!showForgotPassword && (
-        <div className="return-button-container">
-          <button className="return-button" onClick={() => navigate('/')}>Volver a la página principal</button>
+        <div className="back-to-main-page">
+          <button style={{ backgroundColor: '#6c757d', color: '#fff', borderRadius: '4px', padding: '10px 15px', marginTop: 10, cursor: 'pointer', transition: 'background-color 0.3s, opacity 0.3s' }} onClick={() => navigate('/')}>Volver a la página principal</button>
         </div>
       )}
     </div>

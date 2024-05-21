@@ -1,255 +1,349 @@
-.required {
-  color: red; /* Cambia el color del asterisco */
-  margin-left: 4px; /* Añade espacio entre la etiqueta y el asterisco */
+/* Estilos comunes */
+.button {
+  padding: 10px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
-/* Estilos para el contenedor principal de usuarios */
-.users-container {
-  margin: 5px; /* Márgenes externos */
+.button:hover {
+  opacity: 0.9;
 }
 
-/* Estilos para el contenido de usuarios */
-.users-content {
-  padding: 10px; /* Espaciado interno */
+.button-primary {
+  background-color: #007bff;
+  color: #fff;
 }
 
-/* Estilos adicionales según tus necesidades */
-.user-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.button-primary:hover {
+  background-color: #0056b3;
 }
 
-.user-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px; /* Espaciado interno */
-  box-sizing: border-box; /* Incluye el borde en el tamaño total */
-  margin: 10px; /* Márgenes uniformes alrededor de la tarjeta */
-  width: calc(50% - 20px); /* Ancho calculado para dos tarjetas por fila */
+.button-green {
+  background-color: #28a745;
+  color: #fff;
 }
 
-.user-info {
-  margin-bottom: 10px;
+.button-green:hover {
+  background-color: #218838;
 }
 
-.user-actions {
-  display: flow-root;
-  justify-content: center;
+.button-danger {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-/* Estilos para los botones de editar y eliminar */
-.edit-button,
-.delete-button {
-  padding: 8px 16px; /* Espaciado interno del botón */
-  margin-right: 10px; /* Margen derecho entre los botones */
-  cursor: pointer; /* Cambia el cursor al pasar sobre los botones */
-  border: none; /* Elimina el borde del botón */
-  border-radius: 4px; /* Establece bordes redondeados */
-  color: white; /* Color del texto de los botones */
+.button-danger:hover {
+  background-color: #c82333;
 }
 
-/* Estilos para el botón de editar */
-.edit-button {
-  background-color: #007bff; /* Color amarillo para el botón editar */
+.button-secondary {
+  background-color: #6c757d;
+  color: #fff;
 }
 
-/* Estilos para el botón de borrar */
-.delete-button {
-  background-color: #dc3545; /* Color rojo para el botón borrar */
+.button-secondary:hover {
+  background-color: #5a6268;
 }
 
-@media (max-width: 768px) {
-  .user-card {
-    width: 100%; /* Ancho completo en pantallas más pequeñas */
-  }
-}
-
-.users-container {
-  margin: 10px;
+.container {
+  max-width: 35%;
+  margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.users-content {
+.users-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.edit-users-container{
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Estilos específicos de la pantalla de usuarios */
+.users-screen .users-content {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.users-screen h1 {
+  text-align: center;
+}
+
+.users-screen .user-list-table-container {
+  overflow-x: auto;
+}
+
+.users-screen .user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-screen .user-list-table th,
+.users-screen .user-list-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.users-screen .sticky-header th {
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 1;
+}
+
+/* Estilos específicos de la pantalla de edición de usuario */
+.edit-user-screen {
+  max-width: 1000px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.edit-user-screen h2 {
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.users-content label {
-  display: block;
-  margin-bottom: 10px;
+.edit-user-screen .form-row {
+  display: flex;
+  flex-wrap: flex; /* Envuelve elementos si no caben en una fila */
+  gap: 20px; /* Espacio entre elementos */
 }
 
-.users-content input,
-.users-content select {
-  width: 100%;
-  padding: 8px;
+.edit-user-screen .form-row label {
+  flex: 1; /* Ocupa todo el ancho disponible */
+  margin-bottom: 5px;
+}
+
+.edit-user-screen input[type="text"],
+.edit-user-screen input[type="email"],
+.edit-user-screen select {
+  width: 100%; /* Ancho completo */
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.edit-button {
-  padding: 8px 16px;
-  margin-right: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  color: white;
+.edit-user-screen .button-container {
+  display: flex;
+  justify-content: space-between; /* Espacia los botones horizontalmente */
+  margin-top: 20px; /* Espacio arriba de los botones */
 }
 
+<<<<<<< Updated upstream
 .edit-button {
   background-color: #007bff;
+=======
+.edit-user-screen .button-container button {
+  flex-basis: calc(50% - 5px); /* Ancho del 50% menos el espacio entre elementos */
+>>>>>>> Stashed changes
 }
 
-.delete-button {
-  background-color: #dc3545; /* Color rojo para el botón Borrar */
-}
-
-@media (max-width: 768px) {
-  .users-container {
-    margin: 5px;
-    padding: 10px;
+/* Estilos responsivos */
+@media (max-width: 600px) {
+  .edit-user-screen .form-row {
+    flex-direction: column; /* Cambia a una columna en pantallas pequeñas */
   }
 
-  .users-content {
-    margin-bottom: 10px;
-  }
-
-  .edit-button,
-  .delete-button {
-    padding: 8px 12px;
+  .edit-user-screen input[type="text"],
+  .edit-user-screen input[type="email"],
+  .edit-user-screen select {
+    width: 100%; /* Ancho completo en pantallas pequeñas */
   }
 }
 
+
+/* Container for Change Password Screen */
 .password-container {
-  margin: 20px;
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
+/* Header for the Change Password Screen */
+.password-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form for Change Password */
 .password-form {
   display: flex;
   flex-direction: column;
 }
 
+/* Form group for individual form elements */
 .form-group {
   margin-bottom: 15px;
 }
 
+/* Labels for form elements */
 .form-group label {
+  display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
-input[type="password"] {
+/* Input fields for passwords */
+.form-group input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.password-submit-button,
-.password-cancel-button {
-  padding: 8px 16px;
-  cursor: pointer;
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Submit button for the form */
+.password-submit-button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  width: fit-content; /* Ajusta el ancho al contenido */
-  margin-bottom: 15px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
-.password-submit-button {
-  background-color: #007bff; /* Color azul para el botón Guardar */
-  color: white;
-  margin-right: 10px;
+.password-submit-button:hover {
+  background-color: #0056b3;
+  opacity: 0.9;
 }
 
+/* Cancel button for the form */
+.email-cancel-button,
 .password-cancel-button {
-  background-color: #dc3545; /* Color rojo para el botón Cancelar */
-  color: white;
-}
-
-.error-message {
-  color: red;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
   margin-top: 10px;
 }
 
-.email-container {
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.email-cancel-button:hover,
+.password-cancel-button:hover {
+  background-color: #5a6268;
+  opacity: 0.9;
 }
 
+/* Error message styling */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Container for Change Email Screen */
+.email-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Header for the Change Email Screen */
+.email-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form for Change Email */
 .email-form {
   display: flex;
   flex-direction: column;
 }
 
+/* Labels for form elements */
 .email-form label {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.email-form input[type="email"],
-.email-form input[type="password"] {
+/* Input fields for email and password */
+.email-form input {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.email-submit-button,
-.email-cancel-button {
-  padding: 8px 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  width: fit-content; /* Ajusta el ancho al contenido */
   margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
+.email-form input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Submit button for the form */
 .email-submit-button {
-  background-color: #007bff; /* Color azul para el botón Actualizar Correo Electrónico */
-  color: white;
-}
-
-/* Estilo para el contenedor del botón de registro */
-.register-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* Espacio superior para separar del contenido superior */
-}
-
-/* Estilo para el botón de registro */
-.register-button {
-  padding: 10px 20px;
-  background-color: #007BFF; /* Azul fuerte como fondo */
-  color: #FFFFFF; /* Texto blanco */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 16px;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
-/* Estilo para el botón de registro cuando se le aplica hover */
-.register-button:hover {
-  background-color: #0056b3; /* Cambio de color en hover */
+.email-submit-button:hover {
+  background-color: #0056b3;
+  opacity: 0.9;
 }
 
-.email-cancel-button {
-  background-color: #dc3545; /* Color rojo para el botón Cancelar */
-  color: white;
+/* Error message styling */
+.email-container p[style*="color: red"] {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
 }
 
+/* Success message styling */
+.email-container p[style*="color: green"] {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Estilos para el componente SignIn */
 .signin-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .signin-container h1 {
@@ -257,179 +351,142 @@ input[type="password"] {
   margin-bottom: 20px;
 }
 
-.forgot-password a {
-  color: #007bff; /* Color azul típico de los enlaces */
-  text-decoration: underline; /* Subrayado como un enlace */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+.signin-container form {
+  display: flex;
+  flex-direction: column;
 }
 
-.forgot-password a:hover {
-  text-decoration: none; /* Elimina el subrayado al pasar sobre el enlace */
-}
-
-.input-container {
-  margin-bottom: 15px;
-}
-
-.signin-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.input-container {
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.password-submit-button,
-.password-cancel-button,
-.signin-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-}
-
-.password-submit-button:hover,
-.password-cancel-button:hover,
-.signin-button:hover {
-  background-color: #0056b3;
-}
-
-.forgot-password {
-  text-align: center;
-}
-
-.forgot-password a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgot-password a:hover {
-  text-decoration: underline;
-}
-
-.input-container label {
-  display: block;
+.signin-container label {
   margin-bottom: 5px;
 }
 
-.input-container input {
-  padding: 10px;
+.signin-container input[type="email"],
+.signin-container input[type="password"] {
   width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+  margin-bottom: 15px;
 }
 
-.error-message {
-  margin-top: 10px;
-  color: red;
+.signin-container input:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-.signin-container button {
-  padding: 12px;
+.signin-container button[type="submit"],
+.signin-container button[type="button"] {
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  padding: 10px 15px;
   cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  margin-bottom: 10px;
 }
 
-.signin-container button:hover {
+.signin-container button[type="submit"]:hover,
+.signin-container button[type="button"]:hover {
   background-color: #0056b3;
+  opacity: 0.9;
 }
 
+.signin-container a {
+  text-align: center;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.signin-container a:hover {
+  text-decoration: underline;
+}
+
+.signin-container p {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.signin-container .back-to-main-page {
+  text-align: center;
+}
+
+.signin-container .back-to-main-page button {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.signin-container .back-to-main-page button:hover {
+  background-color: #5a6268;
+  opacity: 0.9;
+}
+
+/* Estilos para el componente SignUp */
 .signup-container {
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
 }
 
 .signup-container h1 {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.input-container {
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Añadir espacio entre los elementos en la fila */
+}
+
+.form-group {
+  flex: 1;
   margin-bottom: 15px;
 }
 
-.input-container label {
-  display: block;
+.form-group label {
   margin-bottom: 5px;
 }
 
-.input-container input,
-.input-container select {
-  padding: 8px;
-  width: 90%;
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.button-container {
+  text-align: center;
 }
 
 .error-message {
-  margin-top: 10px;
-  font-size: 14px;
   color: red;
+  margin-top: 10px;
 }
 
-.signup-container button {
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
+.back-to-main-page {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.signup-container button:hover {
-  background-color: #0056b3;
-}
-
-/* Estilo para el contenedor del botón de retorno */
-.return-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* Espacio superior para separar del contenido superior */
-}
-
-/* Estilo para el botón de retorno */
-.return-button {
-  padding: 10px 20px;
-  background-color: #007BFF; /* Azul fuerte como fondo */
-  color: #FFFFFF; /* Texto blanco */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Estilo para el botón de retorno cuando se le aplica hover */
-.return-button:hover {
-  background-color: #0056b3; /* Cambio de color en hover */
+.span-text-color {
+  color: red;
 }

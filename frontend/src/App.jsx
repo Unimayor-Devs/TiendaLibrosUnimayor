@@ -12,12 +12,16 @@ import UsersScreen from './pages/GestionUsuarios/User/UsersScreen';
 import EditUserScreen from './pages/GestionUsuarios/User/EditUserScreen';
 import ChangeEmail from './pages/GestionUsuarios/User/ChangeEmail';
 import ChangePassword from './pages/GestionUsuarios/User/ChangePassword';
+import Unauthorized from './pages/GestionUsuarios/Public/Unauthorized';
+//import DisabledScreen from './pages/GestionUsuarios/User/DisabledScreen.js';
 
 //Home (Autenticacion)
 import UserHomeScreen from './pages/Home/UserHomeScreen';
 
 //Gestión de Libros
 import UserBooksScreen from './pages/GestionLibros/User/UserBooksScreen';
+import AddBookScreen from './pages/GestionLibros/User/AddBookScreen.js';
+import EditBookScreen from './pages/GestionLibros/User/EditBookScreen.js';
 import AdminBooksScreen from './pages/GestionLibros/Admin/AdminBooksScreen';
 
 //Gestión de Inventario y Compras
@@ -28,89 +32,105 @@ import UserShoppingCartScreen from './pages/GestionCompras/User/UserShoppingCart
 import UserCheckoutScreen from './pages/GestionCompras/User/UserCheckoutScreen';  
 
 import { UserProtected } from './pages/GestionUsuarios/User/UserProtected';
-import { AuthContext } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <WelcomeScreen></WelcomeScreen>
+      element: <WelcomeScreen />
     },
-    //Pagina Home Validación de Usuario
+    // Página Home Validación de Usuario
     {
       path: "/home",
-      element: <UserProtected><UserHomeScreen/></UserProtected>
+      element: <UserProtected><UserHomeScreen /></UserProtected>
     },
-    //Gestión de Usuarios
-      //Publico
+    // Gestión de Usuarios
+    // Público
     {
-      path: "/sigin",
-      element: <SignInScreen></SignInScreen>
+      path: "/signin",
+      element: <SignInScreen />
     },
     {
-      path: "/SignUp",
-      element: <SignUpScreen></SignUpScreen>
+      path: "/signup",
+      element: <SignUpScreen />
     },
-      //Admin    
+    /*{
+      path: "/usuario-inhabilitado",
+      element: <UserProtected requiredRole="inhabilitado"><DisabledScreen /></UserProtected>
+    },*/
+    // Admin
     {
       path: "/admin-users",
-      element: <AdminUsersScreen></AdminUsersScreen>
+      element: <UserProtected requiredRole="admin"><AdminUsersScreen /></UserProtected>
     },
-      //User
+    // User
     {
       path: "/users",
-      element: <UsersScreen></UsersScreen>
+      element: <UserProtected><UsersScreen /></UserProtected>
     },
     {
       path: "/users/:userId/edit",
-      element: <EditUserScreen></EditUserScreen>
+      element: <UserProtected><EditUserScreen /></UserProtected>
     },
     {
       path: "/users/:userId/edit/email",
-      element: <ChangeEmail ></ChangeEmail >
+      element: <UserProtected><ChangeEmail /></UserProtected>
     },
     {
       path: "/users/:userId/edit/password",
-      element: <ChangePassword ></ChangePassword >
+      element: <UserProtected><ChangePassword /></UserProtected>
     },
-    //Gestión de Libros
-      //Admin
+    // Gestión de Libros
+    // Admin
     {
       path: "/admin-books",
-      element: <AdminBooksScreen></AdminBooksScreen>
+      element: <UserProtected requiredRole="admin"><AdminBooksScreen /></UserProtected>
     },
-      //User
+    // User
     {
       path: "/books",
-      element: <UserBooksScreen></UserBooksScreen>
+      element: <UserProtected><UserBooksScreen/></UserProtected>
     },
-    //Gestión de Inventario y Compras
-      //Admin
+    {
+      path: "/books/add",
+      element: <UserProtected requiredRole="admin"><AddBookScreen/></UserProtected>
+    },
+    {
+      path: "/books/:bookId/edit",
+      element: <UserProtected requiredRole="admin"><EditBookScreen/></UserProtected>
+    },
+    // Gestión de Inventario y Compras AddBookScreen.js
+    // Admin
     {
       path: "/admin-inventory",
-      element: <AdminInventoryScreen></AdminInventoryScreen>
+      element: <UserProtected requiredRole="admin"><AdminInventoryScreen /></UserProtected>
     },
-      //User
+    // User
     {
       path: "/inventory",
-      element: <UserInventoryScreen></UserInventoryScreen>
+      element: <UserProtected><UserInventoryScreen /></UserProtected>
     },
     {
       path: "/cart",
-      element: <UserShoppingCartScreen></UserShoppingCartScreen>
+      element: <UserProtected><UserShoppingCartScreen /></UserProtected>
     },
     {
       path: "/checkout",
-      element: <UserCheckoutScreen></UserCheckoutScreen>
+      element: <UserProtected><UserCheckoutScreen /></UserProtected>
+    },
+    // Página de acceso no autorizado
+    {
+      path: "/unauthorized",
+      element: <Unauthorized />
     }
-  ])
+  ]);
 
-  return(
-    <AuthContext>
+  return (
+    <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
-    </AuthContext>
+    </AuthProvider>
   );
 }
 
