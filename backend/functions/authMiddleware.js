@@ -1,17 +1,22 @@
 // authMiddleware.js
 
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 
-const validateFirebaseIdToken = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).send({error: "No token provided"});
+  }
+
+  const token = authHeader.split(" ")[1];
+
   try {
-    const idToken = req.headers.authorization;
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const decodedToken = await admin.auth().verifyIdToken(token);
     req.user = decodedToken;
     next();
   } catch (error) {
-    console.error('Error al verificar el token:', error);
-    return res.status(403).send('Acceso denegado');
+    return res.status(401).send({error: "Token invalid or expired"});
   }
 };
 
-module.exports = validateFirebaseIdToken;
+module.exports = authMiddleware;

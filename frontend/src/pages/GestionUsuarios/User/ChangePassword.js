@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import '../Users.css';
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ const ChangePassword = () => {
       setConfirmPassword('');
       setErrorMessage('');
       alert('Contraseña actualizada exitosamente');
-      navigate(-1); // Vuelve a la página anterior
+      navigate(-1);
     } catch (error) {
       setErrorMessage('Error al actualizar la contraseña. Verifica tu contraseña actual.');
       console.error(error);
@@ -82,43 +83,40 @@ const ChangePassword = () => {
 
   return (
     <div className="password-container">
-      <h2>Cambiar Contraseña</h2>
-      <form onSubmit={handlePasswordChange} className="password-form">
-        <div className="form-group">
-          <label>Contraseña Actual:</label>
-          <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Nueva Contraseña:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Confirmar Nueva Contraseña:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="password-submit-button">Guardar</button>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-        <div>
-          <button type="button" className="password-cancel-button" onClick={() => navigate(-1)}>Cancelar</button>
-        </div>
-      </form>
+  <h2>Cambiar Contraseña</h2>
+  <form onSubmit={handlePasswordChange} className="password-form">
+    <div className="form-group">
+      <label>Contraseña Actual:</label>
+      <input
+        type="password"
+        value={currentPassword}
+        onChange={(e) => setCurrentPassword(e.target.value)}
+        required
+      />
     </div>
+    <div className="form-group">
+      <label>Nueva Contraseña:</label>
+      <input
+        type="password"
+        value={newPassword}
+        onChange={(e) => setNewPassword(e.target.value)}
+        required
+      />
+    </div>
+    <div className="form-group">
+      <label>Confirmar Nueva Contraseña:</label>
+      <input
+        type="password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        required
+      />
+    </div>
+    <button className="button button-primary" type="submit">Guardar</button>
+    <button className="email-cancel-button" type="button" onClick={() => navigate(-1)}>Cancelar</button>
+    {errorMessage && <p className="error-message">{errorMessage}</p>}
+  </form>
+</div>
   );
 };
 

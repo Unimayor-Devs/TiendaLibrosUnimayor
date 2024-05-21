@@ -1,44 +1,38 @@
 import React, { useState } from 'react';
-import { getAuth, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
-import { updateUser } from '../../../services/userService';
+import { updateUserEmail } from '../../../services/userService';
 import { useNavigate } from 'react-router-dom';
 
 const ChangeEmail = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Obtenemos la función navigate
+  const [oldEmail, setOldEmail] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
 
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  const handleEmailChange = async () => {
+  const handleEmailChange = async (e) => {
+    e.preventDefault();
     try {
-      if (!user) {
-        throw new Error('No hay usuario autenticado.');
+      // Verificar que los campos no estén vacíos
+      if (!oldEmail || !newEmail || !password) {
+        setError('Por favor, completa todos los campos.');
+        return;
       }
 
-      navigate(-1); // Vuelve a la página anterior
+      // Llamar a la función para actualizar el correo electrónico
+      await updateUserEmail(oldEmail, password, newEmail);
+      
+      // Mostrar la alerta del navegador con el mensaje de éxito
+      window.alert('¡Correo electrónico actualizado exitosamente!');
 
-      // Reautenticar al usuario con la contraseña actual antes de cambiar el correo electrónico
-      const credential = EmailAuthProvider.credential(user.email, password);
-      await reauthenticateWithCredential(user, credential);
-
-      // Actualizar el correo electrónico en la autenticación de Firebase
-      await updateEmail(user, newEmail);
-
-      // Actualizar el correo electrónico en el documento de usuario en Firestore
-      const userId = user.uid;
-      await updateUser(userId, { email: newEmail });
-
-      setSuccessMessage('¡Correo electrónico actualizado correctamente!');
-      setError(null);
+      // Vaciar los campos después de la actualización exitosa
+      setOldEmail('');
       setNewEmail('');
-      setPassword(''); // Limpiar la contraseña después del cambio exitoso
+      setPassword('');
+
+      // Navegar a la página anterior
+      navigate(-1);
     } catch (error) {
-      setError('Error al actualizar el correo electrónico: ' + error.message);
-      setSuccessMessage('');
+      setError('Error al actualizar el correo electrónico. Por favor, inténtalo de nuevo.');
     }
   };
 
@@ -46,17 +40,28 @@ const ChangeEmail = () => {
     <div className="email-container">
       <h2>Cambiar Correo Electrónico</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       <form className="email-form">
-        <label>Nuevo Correo Electrónico:</label>
+        <label htmlFor="oldEmailInput">Correo Electrónico Actual:</label>
         <input
           type="email"
+          id="oldEmailInput"
+          name="oldEmail"
+          value={oldEmail}
+          onChange={(e) => setOldEmail(e.target.value)}
+        />
+        <label htmlFor="newEmailInput">Nuevo Correo Electrónico:</label>
+        <input
+          type="email"
+          id="newEmailInput"
+          name="newEmail"
           value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
         />
-        <label>Contraseña:</label>
+        <label htmlFor="passwordInput">Contraseña:</label>
         <input
           type="password"
+          id="passwordInput"
+          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

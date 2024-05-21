@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { updateUser, getUser } from '../../../services/userService';
 import { getDocs, collection } from 'firebase/firestore';
 import { firebaseFirestore } from '../../../services/FirebaseService';
+import { AuthContext } from '../../../context/AuthContext';
+import '../Users.css';
 
 const EditUserScreen = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const { userId } = useParams();
   const [formData, setFormData] = useState({
@@ -16,6 +19,7 @@ const EditUserScreen = () => {
     city: ''
   });
   const [departmentsList, setDepartmentsList] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false); // Estado para controlar si el usuario es administrador
 
   const fetchUser = async () => {
     try {
@@ -28,6 +32,7 @@ const EditUserScreen = () => {
         department: userData.department || '',
         city: userData.city || ''
       });
+      setIsAdmin(userData.role === 'admin'); // Establecer isAdmin basado en el rol del usuario
     } catch (error) {
       console.error('Error fetching user:', error);
     }
@@ -84,68 +89,73 @@ const EditUserScreen = () => {
   };
 
   return (
-    <div className="users-container">
-      <h2>Editar Usuario</h2>
+    <div className="edit-user-screen edit-users-container">
+      <h2>Editar Mi Perfil</h2>
       <form onSubmit={handleSubmit} className="users-content">
-        <label>
-          Nombre:
-          <input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} />
-        </label>
-        <label>
-          Apellido:
-          <input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} />
-        </label>
-        <label>
-          Correo Electrónico:
-          <input type="email" value={formData.email} readOnly />
-        </label>
-        <label>
-          Celular:
-          <input
-            type="text"
-            value={formData.phoneNumber}
-            onChange={(e) => {
-              const inputPhoneNumber = e.target.value.replace(/\D/g, ''); // Elimina caracteres que no sean dígitos
-              const validatedPhoneNumber = inputPhoneNumber.slice(0, 10); // Limita a un máximo de 10 dígitos
-              handleInputChange('phoneNumber', validatedPhoneNumber); // Actualiza el estado con el número validado
-            }}
-            placeholder="Teléfono"
-            required
-          />
-        </label>
-        <label>
-          Departamento:
-          <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} required>
-            <option value="" disabled>
-              Selecciona un departamento
-            </option>
-            {departmentsList.map((dep) => (
-              <option key={dep} value={dep}>
-                {dep}
+        <div className="form-row">
+          <label>
+            Nombre:
+            <input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} required />
+          </label>
+          <label>
+            Apellido:
+            <input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} required />
+          </label>
+        </div>
+        <div className="form-row">
+          <label>
+            Correo Electrónico:
+            <input type="email" value={formData.email} readOnly />
+          </label>
+          <label>
+            Celular:
+            <input
+              type="text"
+              value={formData.phoneNumber}
+              onChange={(e) => {
+                const inputPhoneNumber = e.target.value.replace(/\D/g, ''); // Elimina caracteres que no sean dígitos
+                const validatedPhoneNumber = inputPhoneNumber.slice(0, 10); // Limita a un máximo de 10 dígitos
+                handleInputChange('phoneNumber', validatedPhoneNumber); // Actualiza el estado con el número validado
+              }}
+              placeholder="Teléfono"
+              required
+            />
+          </label>
+        </div>
+        <div className="form-row">
+          <label>
+            Departamento:
+            <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} required>
+              <option value="" disabled>
+                Selecciona un departamento
               </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Ciudad:
-          <input type="text" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} />
-        </label>
-        <button type="submit" className="edit-button">Guardar Cambios</button>
+              {departmentsList.map((dep) => (
+                <option key={dep} value={dep}>
+                  {dep}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Ciudad:
+            <input type="text" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} required />
+          </label>
+        </div>
+        <button type="submit" className="button button-primary">Guardar Cambios</button>
       </form>
-
-      <div className="users-content">
-        <button onClick={handleEditEmail} className="edit-button">Editar Correo</button>
-      </div>
-
-      <div className="users-content">
-        <button onClick={handleEditPassword} className="edit-button">Cambiar Contraseña</button>
-      </div>
+  
+      {userId === user.uid && ( // Renderizar solo si el usuario está editando su propio perfil
+        <div className="users-content button-container">
+          <button onClick={handleEditEmail} className="button button-primary">Cambiar Correo</button>
+          <button onClick={handleEditPassword} className="button button-primary">Cambiar Contraseña</button>
+        </div>
+      )}
       
-      <div className="users-content">
-        <button onClick={() => navigate('/users')} className="edit-button">Volver</button>
+      <div className="users-content button-container">
+        <button onClick={() => navigate('/users')} className="button button-secondary">Volver</button>
       </div>
     </div>
   );
-};
+}  
 
 export default EditUserScreen;

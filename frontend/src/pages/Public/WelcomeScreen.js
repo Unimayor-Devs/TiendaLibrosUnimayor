@@ -9,7 +9,7 @@ function WelcomeScreen() {
       <h1 className="welcome-title">Bienvenido a Tienda de Libros Unimayor</h1>
       <p>Seleccione una opción:</p>
       <div>
-        <Link className="welcome-button" to="/sigin">
+        <Link className="welcome-button" to="/signin">
           <FaSignInAlt /> Iniciar sesión
         </Link>
         <Link className="welcome-button" to="/signup">

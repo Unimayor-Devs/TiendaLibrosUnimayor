@@ -122,116 +122,130 @@ const SignUpScreen = () => {
       console.log('Datos del usuario almacenados en la colección "users".');
       navigate('/home');
     } catch (error) {
-      console.error('Error al registrar usuario:', error.message);
-      setError('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+      if (error.code === 'auth/email-already-in-use') {
+        // Correo electrónico ya en uso
+        setError('El correo electrónico ya está en uso. Por favor, utiliza otro.');
+      } else {
+        // Otro tipo de error
+        console.error('Error al registrar usuario:', error.message);
+        setError('Error al registrar usuario. Por favor, inténtalo de nuevo.');
+      }
     }
   };  
 
   return (
     <div className="signup-container">
       <h1>Registro de Usuario</h1>
-      <form onSubmit={handleSignUp}>
-      <div className="input-container">
-          <label>Nombre <span className="required">*</span>:</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Nombre"
-            required
-          />
+      <form onSubmit={handleSignUp} className="signup-form">
+        <div className="form-row">
+          <div className="form-group">
+            <label>Nombre <span className="span-text-color">*</span></label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="Nombre"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Apellido <span className="span-text-color">*</span></label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Apellido"
+              required
+            />
+          </div>
         </div>
-        <div className="input-container">
-          <label>Apellido <span className="required">*</span>:</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Apellido"
-            required
-          />
+        <div className="form-row">
+          <div className="form-group">
+            <label>Email <span className="span-text-color">*</span></label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Teléfono <span className="span-text-color">*</span></label>
+            <input
+              type="tel"
+              pattern="[0-9]*"
+              value={phoneNumber}
+              onChange={(e) => {
+                const validatedValue = e.target.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+                if (validatedValue.length <= 10) {
+                  setPhoneNumber(validatedValue); // Actualizar el estado solo si la longitud es válida
+                }
+              }}
+              placeholder="Teléfono"
+              required
+            />
+          </div>
         </div>
-        <div className="input-container">
-          <label>Email <span className="required">*</span>:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
+        <div className="form-row">
+          <div className="form-group">
+            <label>Contraseña <span className="span-text-color">*</span></label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Contraseña"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Verificar Contraseña <span className="span-text-color">*</span></label>
+            <input
+              type="password"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              placeholder="Verificar Contraseña"
+              required
+            />
+          </div>
         </div>
-        <div className="input-container">
-          <label>Contraseña <span className="required">*</span>:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Contraseña"
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Verificar Contraseña <span className="required">*</span>:</label>
-          <input
-            type="password"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            placeholder="Verificar Contraseña"
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Teléfono <span className="required">*</span>:</label>
-          <input
-            type="tel"
-            pattern="[0-9]*"
-            value={phoneNumber}
-            onChange={(e) => {
-              const validatedValue = e.target.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
-              if (validatedValue.length <= 10) {
-                setPhoneNumber(validatedValue); // Actualizar el estado solo si la longitud es válida
-              }
-            }}
-            placeholder="Teléfono"
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Ciudad <span className="required">*</span>:</label>
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Ciudad"
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Departamento <span className="required">*</span>:</label>
-          <select
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Selecciona un departamento
-            </option>
-            {departmentsList.map((dep) => (
-              <option key={dep} value={dep}>
-                {dep}
+        <div className="form-row">
+          <div className="form-group">
+            <label>Departamento <span className="span-text-color">*</span></label>
+            <select
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                Selecciona un departamento
               </option>
-            ))}
-          </select>
+              {departmentsList.map((dep) => (
+                <option key={dep} value={dep}>
+                  {dep}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Ciudad <span className="span-text-color">*</span></label>
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="Ciudad"
+              required
+            />
+          </div>
         </div>
         {error && <p className="error-message">{error}</p>}
-        <div className="register-button-container">
-          <button type="submit" className="register-button">Registrarse</button>
+        <div className="button-container">
+          <button type="submit" className="button button-primary">Registrarse</button>
         </div>
       </form>
-      <div className="return-button-container">
-          <button className="return-button" onClick={() => navigate('/')}>Volver a la página principal</button>
-        </div>
+      <div className="back-to-main-page">
+        <button className="button button-secondary" onClick={() => navigate('/')}>Volver a la página principal</button>
+      </div>
     </div>
   );
 };
