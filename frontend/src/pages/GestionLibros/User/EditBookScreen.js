@@ -119,8 +119,8 @@ const EditBookScreen = () => {
             required
           />
         </div>
-        <button type="submit">Guardar Cambios</button>
-        <button type="button" onClick={handleCancel}>Cancelar</button>
+        <button type="submit" className="submit-button" >Guardar Cambios</button>
+        <button type="button" className="back-button" onClick={handleCancel}>Cancelar</button>
       </form>
     </div>
   );

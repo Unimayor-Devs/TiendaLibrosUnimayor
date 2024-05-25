@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firestore'; // Importa Firestore
+import { FaLock, FaEye, FaEyeSlash, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft  } from 'react-icons/fa';
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');
@@ -14,9 +15,10 @@ const SignUpScreen = () => {
   const [department, setDepartment] = useState('');
   const [error, setError] = useState(null);
   const [departmentsList, setDepartmentsList] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
   const auth = getAuth();
   const navigate = useNavigate();
-  const db = getFirestore(); // Obtiene una referencia a Firestore
+  const db = getFirestore();
 
   const validatePassword = (password) => {
     const errors = {};
@@ -48,7 +50,6 @@ const SignUpScreen = () => {
     return errors;
   };
 
-  // Función para obtener la lista de departamentos desde Firestore
   const fetchDepartments = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, 'departments'));
@@ -56,19 +57,16 @@ const SignUpScreen = () => {
       setDepartmentsList(departments);
     } catch (error) {
       console.error('Error al obtener departamentos:', error.message);
-      // Manejar error en la obtención de departamentos
     }
   };
 
   useEffect(() => {
-    // Llamar a la función para obtener la lista de departamentos al cargar el componente
     fetchDepartments();
-  }, []); // Se ejecuta solo una vez al cargar el componente
+  }, []);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Validar longitud del número de teléfono
     if (phoneNumber.length !== 10) {
       setError('El número de teléfono debe tener exactamente 10 dígitos.');
       return;
@@ -82,7 +80,6 @@ const SignUpScreen = () => {
     const passwordErrors = validatePassword(password);
   
     if (Object.keys(passwordErrors).length > 0) {
-      // Construir mensaje de error combinando todos los errores
       const errorMessage = Object.values(passwordErrors).join(' ');
   
       setError(errorMessage);
@@ -93,10 +90,8 @@ const SignUpScreen = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Enviar correo de verificación al usuario
       await sendEmailVerification(user);
   
-      // Crear un nuevo documento en la colección "users" con el UID del usuario como ID de documento
       await setDoc(doc(db, 'users', user.uid), {
         userId: user.uid,
         firstName,
@@ -107,7 +102,6 @@ const SignUpScreen = () => {
         department,
       });
   
-      // Reiniciar campos después del registro
       setEmail('');
       setPassword('');
       setPasswordConfirmation('');
@@ -123,128 +117,130 @@ const SignUpScreen = () => {
       navigate('/home');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
-        // Correo electrónico ya en uso
         setError('El correo electrónico ya está en uso. Por favor, utiliza otro.');
       } else {
-        // Otro tipo de error
         console.error('Error al registrar usuario:', error.message);
         setError('Error al registrar usuario. Por favor, inténtalo de nuevo.');
       }
     }
-  };  
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
-    <div className="signup-container">
+    <div className="signin-container">
       <h1>Registro de Usuario</h1>
       <form onSubmit={handleSignUp} className="signup-form">
-        <div className="form-row">
-          <div className="form-group">
-            <label>Nombre <span className="span-text-color">*</span></label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Nombre"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Apellido <span className="span-text-color">*</span></label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              placeholder="Apellido"
-              required
-            />
-          </div>
+        <div className="input-container">
+          <FaUserCircle className="input-icon" />
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Nombre"
+            required
+          />
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Email <span className="span-text-color">*</span></label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Teléfono <span className="span-text-color">*</span></label>
-            <input
-              type="tel"
-              pattern="[0-9]*"
-              value={phoneNumber}
-              onChange={(e) => {
-                const validatedValue = e.target.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
-                if (validatedValue.length <= 10) {
-                  setPhoneNumber(validatedValue); // Actualizar el estado solo si la longitud es válida
-                }
-              }}
-              placeholder="Teléfono"
-              required
-            />
-          </div>
+        <div className="input-container">
+          <FaUserCircle className="input-icon" />
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Apellido"
+            required
+          />
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Contraseña <span className="span-text-color">*</span></label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Contraseña"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Verificar Contraseña <span className="span-text-color">*</span></label>
-            <input
-              type="password"
-              value={passwordConfirmation}
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
-              placeholder="Verificar Contraseña"
-              required
-            />
-          </div>
+        <div className="input-container">
+          <FaEnvelope className="input-icon" />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
         </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label>Departamento <span className="span-text-color">*</span></label>
-            <select
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-              required
-            >
-              <option value="" disabled>
-                Selecciona un departamento
+        <div className="input-container">
+          <FaPhone  className="input-icon" />
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            value={phoneNumber}
+            onChange={(e) => {
+              const validatedValue = e.target.value.replace(/\D/g, '');
+              if (validatedValue.length <= 10) {
+                setPhoneNumber(validatedValue);
+              }
+            }}
+            placeholder="Teléfono"
+            required
+          />
+        </div>
+        <div className="input-container">
+          <FaLock className="input-icon" />
+          <input
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Contraseña"
+            required
+          />
+          {showPassword ? (
+            <FaEyeSlash className="password-toggle-icon" onClick={togglePasswordVisibility} />
+          ) : (
+            <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
+          )}
+        </div>
+        <div className="input-container">
+          <FaLock className="input-icon" />
+          <input
+            type={showPassword ? 'text' : 'password'}
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            placeholder="Verificar Contraseña"
+            required
+          />
+          {showPassword ? (
+            <FaEyeSlash className="password-toggle-icon" onClick={togglePasswordVisibility} />
+          ) : (
+            <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
+          )}
+        </div>
+        <div className="input-container">
+          {/* <FaBuilding  className="input-icon" /> */}
+          <select style={{ width: '98%', height: '36px', border: '1px solid #ccc', borderRadius: '5px'}}
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            required
+          >
+            <option  value="" disabled>
+              Selecciona un departamento
+            </option>
+            {departmentsList.map((dep) => (
+              <option key={dep} value={dep}>
+                {dep}
               </option>
-              {departmentsList.map((dep) => (
-                <option key={dep} value={dep}>
-                  {dep}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Ciudad <span className="span-text-color">*</span></label>
-            <input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              placeholder="Ciudad"
-              required
-            />
-          </div>
+            ))}
+          </select>
+        </div>
+        <div className="input-container">
+          <FaCity  className="input-icon" />
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Ciudad"
+            required
+          />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <div className="button-container">
-          <button type="submit" className="button button-primary">Registrarse</button>
-        </div>
+        <button type="submit" className="submit-button">Registrarse</button>
       </form>
       <div className="back-to-main-page">
-        <button className="button button-secondary" onClick={() => navigate('/')}>Volver a la página principal</button>
+        <button className="back-button" onClick={() => navigate('/')}><FaArrowLeft  /> Volver a la página principal</button>
       </div>
     </div>
   );

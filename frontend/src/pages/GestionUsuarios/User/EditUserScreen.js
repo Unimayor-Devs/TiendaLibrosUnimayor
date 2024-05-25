@@ -4,7 +4,8 @@ import { updateUser, getUser } from '../../../services/userService';
 import { getDocs, collection } from 'firebase/firestore';
 import { firebaseFirestore } from '../../../services/FirebaseService';
 import { AuthContext } from '../../../context/AuthContext';
-import '../Users.css';
+import { FaLock, FaEye, FaEyeSlash, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft  } from 'react-icons/fa';
+import './EditUserScreen.css';
 
 const EditUserScreen = () => {
   const { user } = useContext(AuthContext);
@@ -89,26 +90,24 @@ const EditUserScreen = () => {
   };
 
   return (
-    <div className="edit-user-screen edit-users-container">
-      <h2>Editar Mi Perfil</h2>
-      <form onSubmit={handleSubmit} className="users-content">
-        <div className="form-row">
-          <label>
-            Nombre:
-            <input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} required />
-          </label>
-          <label>
-            Apellido:
-            <input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} required />
-          </label>
+    <div className="signin-container">
+      <h1>Editar Mi Perfil</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+            <FaUserCircle className="input-icon" />
+            <input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} placeholder="Nombre" required />
+          
         </div>
-        <div className="form-row">
-          <label>
-            Correo Electrónico:
-            <input type="email" value={formData.email} readOnly />
-          </label>
-          <label>
-            Celular:
+        <div className="input-container">
+        <FaUserCircle className="input-icon" />
+            <input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} placeholder="Apellido" required />
+        </div>
+        <div className="input-container">
+        <FaEnvelope className="input-icon" />
+            <input type="email" value={formData.email} placeholder="Correo" readOnly />
+        </div>
+        <div className="input-container">
+        <FaPhone className="input-icon" />
             <input
               type="text"
               value={formData.phoneNumber}
@@ -120,12 +119,9 @@ const EditUserScreen = () => {
               placeholder="Teléfono"
               required
             />
-          </label>
         </div>
-        <div className="form-row">
-          <label>
-            Departamento:
-            <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} required>
+        <div className="input-container">
+            <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} style={{ width: '98%', height: '36px', border: '1px solid #ccc', borderRadius: '5px'}} required>
               <option value="" disabled>
                 Selecciona un departamento
               </option>
@@ -135,24 +131,24 @@ const EditUserScreen = () => {
                 </option>
               ))}
             </select>
-          </label>
-          <label>
-            Ciudad:
-            <input type="text" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} required />
-          </label>
         </div>
-        <button type="submit" className="button button-primary">Guardar Cambios</button>
+        <div className="input-container">
+        <FaCity className="input-icon" />
+            <input type="text" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} required />
+        </div>
+        <button type="submit" className="submit-button">Guardar Cambios</button>
       </form>
   
       {userId === user.uid && ( // Renderizar solo si el usuario está editando su propio perfil
-        <div className="users-content button-container">
-          <button onClick={handleEditEmail} className="button button-primary">Cambiar Correo</button>
-          <button onClick={handleEditPassword} className="button button-primary">Cambiar Contraseña</button>
+        <div>
+          <button onClick={handleEditEmail} className="back-button">Cambiar Correo</button>
+          <button onClick={handleEditPassword} className="back-button">Cambiar Contraseña</button>
         </div>
       )}
       
-      <div className="users-content button-container">
-        <button onClick={() => navigate('/users')} className="button button-secondary">Volver</button>
+      <div className="container-forgot-password">
+      <FaArrowLeft className="input-icon" />
+        <button onClick={() => navigate('/users')} className="back-button"> Volver</button>
       </div>
     </div>
   );
