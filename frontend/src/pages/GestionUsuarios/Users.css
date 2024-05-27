@@ -56,7 +56,7 @@
 }
 
 .users-container {
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -145,13 +145,8 @@
   margin-top: 20px; /* Espacio arriba de los botones */
 }
 
-<<<<<<< Updated upstream
-.edit-button {
-  background-color: #007bff;
-=======
 .edit-user-screen .button-container button {
   flex-basis: calc(50% - 5px); /* Ancho del 50% menos el espacio entre elementos */
->>>>>>> Stashed changes
 }
 
 /* Estilos responsivos */

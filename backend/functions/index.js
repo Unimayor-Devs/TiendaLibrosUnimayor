@@ -4,12 +4,11 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 exports.deleteUserFromAuth = functions.https.onRequest(async (req, res) => {
-  res.set("Access-Control-Allow-Origin", ["http://localhost:3000"]); // Agrega tu dominio aquí
+  res.set("Access-Control-Allow-Origin", ["http://localhost:3000"]); 
   res.set("Access-Control-Allow-Methods", "POST");
   res.set("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
-    // Permitir solicitudes preflights
     res.status(204).send("");
     return;
   }

@@ -141,6 +141,7 @@ const UsersScreen = () => {
 
 export default UsersScreen;
 */
+
 import React, { useState, useEffect, useContext } from 'react';
 import { getUsers, deleteUser, deleteUserRoleField } from '../../../services/userService';
 import { useNavigate } from 'react-router-dom';
@@ -259,27 +260,36 @@ const UsersScreen = () => {
                   {userRole === 'admin' && (
                     <>
                       <th>UID</th>
-                      <th>Estado</th>
+                      {/* <th>Estado</th> */}
                     </>
                   )}
                   <th>Nombre</th>
                   <th>Correo</th>
+                  <th>Telefono</th>
+                  <th>Departamento</th>
+                  <th>Ciudad</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
               {users.map(u => (
                 <tr key={u.id}>
+                  
                   {userRole === 'admin' && (
                     <>
                       <td>{u.id}</td>
+                      {/*
                       <td style={{ color: u.role === 'inhabilitado' ? 'red' : 'green' }}>
                         {u.role === 'inhabilitado' ? 'Inhabilitado' : 'Habilitado'}
                       </td>
+                      */}
                     </>
                   )}
                   <td>{u.firstName} {u.lastName}</td>
                   <td>{u.email}</td>
+                  <td>{u.phoneNumber}</td>
+                  <td>{u.department}</td>
+                  <td>{u.city}</td>
                   <td>
                     {userRole === 'admin' || (user && user.uid === u.id) ? (
                       <button className="button button-primary" onClick={() => handleEditUser(u.id)}>
