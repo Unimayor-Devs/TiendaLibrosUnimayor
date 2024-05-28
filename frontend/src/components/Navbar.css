@@ -1,45 +1,49 @@
 /* Estilos para el Navbar */
 .Navbar {
-    background-color: #333; /* Color de fondo del Navbar */
-    color: white; /* Color del texto en el Navbar */
-    height: 60px; /* Altura del Navbar */
-    display: flex; /* Establece el diseño flexible para alinear elementos */
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Centra verticalmente los elementos */
-    padding: 0 20px; /* Espaciado interno */
-  }
-  
-  /* Estilos para los elementos del Navbar */
-  .Navbar ul {
-    list-style-type: none; /* Elimina los estilos de lista */
-    display: flex; /* Establece el diseño flexible para los elementos de la lista */
-    gap: 20px; /* Espacio entre los elementos */
-    margin-left: auto; /* Empuja los elementos hacia la derecha */
-  }
-  
-  /* Estilos para los elementos del Navbar */
-  .Navbar li {
-    cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
-  }
-  
-  /* Estilos para los enlaces del Navbar */
-  .Navbar a {
-    text-decoration: none; /* Elimina la decoración de subrayado en los enlaces */
-    color: white; /* Color del texto */
-  }
-  
-  /* Estilos específicos para el botón de salir en el Navbar */
-  .Navbar .logout-button {
-    background-color: #dc3545; /* Color de fondo para el botón */
-    color: white; /* Color del texto del botón */
-    padding: 8px 16px; /* Espaciado interno del botón */
-    border: none; /* Elimina el borde del botón */
-    border-radius: 4px; /* Establece bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  }
-  
-  /* Estilos específicos para el botón de salir al pasar sobre él */
-  .Navbar .logout-button:hover {
-    background-color: #c82333; /* Cambia el color de fondo al pasar sobre el botón */
-  }
-  
+  background-color: #8c6751; /* Color de fondo del Navbar */
+  color: white; /* Color del texto en el Navbar */
+  height: 60px; /* Altura del Navbar */
+  display: flex; /* Establece el diseño flexible para alinear elementos */
+  justify-content: space-between; /* Alinea los elementos a los extremos */
+  align-items: center; /* Centra verticalmente los elementos */
+  padding: 0 20px; /* Espaciado interno */
+  position: fixed; 
+  width: 98%; 
+  top: 0; 
+  z-index: 3;
+}
+
+/* Estilos para los elementos del Navbar */
+.Navbar ul {
+  list-style-type: none; /* Elimina los estilos de lista */
+  display: flex; /* Establece el diseño flexible para los elementos de la lista */
+  gap: 20px; /* Espacio entre los elementos */
+  margin-left: auto; /* Empuja los elementos hacia la derecha */
+}
+
+/* Estilos para los elementos del Navbar */
+.Navbar li {
+  cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+}
+
+/* Estilos para los enlaces del Navbar */
+.Navbar a {
+  text-decoration: none; /* Elimina la decoración de subrayado en los enlaces */
+  color: white; /* Color del texto */
+}
+
+/* Estilos específicos para el botón de salir en el Navbar */
+.Navbar .logout-button {
+  background-color: #6c4a37;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: -5px;
+  border: 1px solid #ddd;
+}
+
+/* Estilos específicos para el botón de salir al pasar sobre él */
+.Navbar .logout-button:hover {
+  background-color: #c82333; /* Cambia el color de fondo al pasar sobre el botón */
+}

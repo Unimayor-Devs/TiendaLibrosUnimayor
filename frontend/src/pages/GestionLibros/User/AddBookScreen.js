@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { addBook } from '../../../services/bookService';
 import { useNavigate } from 'react-router-dom';
-import './AddBookScreen.css';
-import './common-styles.css';
+import './EditBookScreen.css';
 
 const AddBookScreen = () => {
   const navigate = useNavigate();
@@ -62,7 +61,7 @@ const AddBookScreen = () => {
   };
 
   return (
-    <div className="add-book-container">
+    <div className="edit-book-container">
       <h2>Agregar Libro</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

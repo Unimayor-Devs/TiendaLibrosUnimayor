@@ -84,3 +84,28 @@ export const deleteBookById = async (bookId) => {
     throw error;
   }
 };
+
+// Función para actualizar el stock de un libro después de una compra
+export const updateBookStock = async (bookId, newStock) => {
+  try {
+    const bookDocRef = doc(firebaseFirestore, 'books', bookId);
+    await updateDoc(bookDocRef, { invCantStock: newStock });
+    console.log('Stock del libro actualizado con éxito');
+  } catch (error) {
+    console.error('Error al actualizar el stock del libro:', error);
+    throw error;
+  }
+};
+
+
+// Función para actualizar el estado de un libro
+export const updateBookStatus = async (bookId, newStatus) => {
+  try {
+    const bookRef = doc(firebaseFirestore, 'books', bookId);
+    await updateDoc(bookRef, { invStatus: newStatus });
+    console.log(`Estado del libro con ID ${bookId} actualizado a "${newStatus}"`);
+  } catch (error) {
+    console.error('Error updating book status:', error);
+    throw error;
+  }
+};

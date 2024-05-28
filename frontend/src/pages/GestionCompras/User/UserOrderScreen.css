@@ -1,0 +1,154 @@
+.order-container {
+    width: 80%; /* Ancho del 80% de la pantalla */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+  }
+
+.order-resume-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .order-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .order-info {
+    margin-bottom: 10px;
+  }
+  
+  .order-info h3 {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .order-info p {
+    color: #333;
+    font-size: 16px;
+  }
+  
+
+.order-summary-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .order-summary-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .order-summary-details {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .order-info {
+    margin-bottom: 20px;
+  }
+  
+  .order-info p {
+    margin: 5px 0;
+  }
+  
+  .order-values p {
+    margin: 5px 0;
+  }
+  
+  .items-title {
+    margin-top: 20px;
+  }
+  
+  .items-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .item p {
+    margin: 5px 0;
+  }
+  
+  .checkout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8c6751;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .checkout-button:hover {
+    background-color: #6c4a37;
+  }
+  
+  .order-not-found {
+    font-size: 18px;
+    color: red;
+    margin-top: 20px;
+  }
+  
+  .order-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-item {
+  flex: 0 0 calc(20% - 20px); /* 20% de ancho, con un margen de 20px entre elementos */
+  margin: 10px;
+}
+
+/* Estilos específicos para las tarjetas de libro */
+.order-book-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.order-book-card-inside {
+  padding: 10px;
+}
+
+.order-book-content {
+  display: flex;
+}
+
+.order-book-details {
+  margin-left: 10px;
+}
+
+/* Estilos para las imágenes de los libros dentro de las tarjetas */
+.order-book-content img {
+  width: 100px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+}
+
+/* Estilos para los textos dentro de las tarjetas de libro */
+.order-item-detail-label {
+  font-weight: bold;
+}
+
+.order-columns {
+  display: flex;
+}
+
+.order-column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.user-info-container {
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+}
