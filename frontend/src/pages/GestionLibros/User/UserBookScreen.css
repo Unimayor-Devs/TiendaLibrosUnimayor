@@ -80,6 +80,12 @@
   max-width: 150px; /* Tamaño máximo para la imagen */
   margin-right: 20px; /* Espacio a la derecha de la imagen */
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.55);
+  transition: transform 0.7s ease; /* Agrega una transición suave */
+}
+
+/* Efecto hover para la imagen del libro */
+.book-content img:hover {
+  transform: scale(2.05); /* Escala ligeramente la imagen */
 }
 
 /* Detalles del libro */

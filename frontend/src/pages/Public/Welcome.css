@@ -30,7 +30,12 @@ body::after {
   background-image: url(./assets/library-with-books.jpg);
   background-size: cover;
   z-index: 0; /* Colocarlo detrás del color de fondo */
-  opacity: 0.5; /* Opacidad de la imagen de fondo */
+  opacity: 0.5; /* Opacidad inicial de la imagen de fondo */
+  transition: opacity 0.3s ease; /* Transición suave de opacidad */
+}
+
+body::after:hover {
+  opacity: 0.7; /* Ajusta la opacidad al hacer hover para un efecto sutil */
 }
 
 body > * {
@@ -59,15 +64,32 @@ h2 {
   width: 100%; 
   top: 0; 
   z-index: 3;
+  transition: transform 0.5s ease; /* Agrega una transición suave */
+}
+
+.welcome-header:hover {
+  transform: translateY(-3px); /* Desplaza el encabezado ligeramente hacia arriba */
 }
 
 .logo-container {
   display: flex;
   align-items: center;
+  animation: shake 30.0s ease infinite; /* Aplica la animación de shake */
 }
+
 .logo-container h2{
   color: #fff;
 }
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-1px) rotate(-2deg); }
+  40% { transform: translateX(1px) rotate(2deg); }
+  60% { transform: translateX(-1px) rotate(-2deg); }
+  80% { transform: translateX(1px) rotate(2deg); }
+  100% { transform: translateX(0); }
+}
+
 .logo {
   max-height: 50px;
   margin-right: 10px;
@@ -255,8 +277,10 @@ textarea {
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  transition: transform 0.2s ease; /* Agrega una transición suave */
 }
 
 .welcome-button:hover {
   background-color: #d8bea3;
+  transform: scale(1.05); /* Escala ligeramente el botón al hacer hover */
 }
