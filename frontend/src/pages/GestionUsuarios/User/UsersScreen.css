@@ -1,0 +1,103 @@
+.users-container {
+  margin: 90px;
+  max-width: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.users-content h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.user-list-table-container {
+  overflow-x: auto;
+}
+
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-list-table th,
+.user-list-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-list-table th {
+  background-color: #8c6751; /* Color de fondo único para la fila de encabezado */
+  color: #fff; /* Color de texto para los encabezados */
+  font-weight: bold;
+}
+
+.user-list-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.sticky-header th {
+  position: sticky;
+  top: 0;
+  background: #8c6751; /* Asegúrate de que el fondo se mantenga al hacer scroll */
+  z-index: 1;
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-primary {
+  max-height: 40px;
+  background-color: #8c6751;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-primary:hover {
+  background-color: #6c4a37;
+}
+
+.button-danger {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button-danger:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.search-bar-container {
+  max-height: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #6c4a37;
+  border-radius: 5px;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}

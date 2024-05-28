@@ -1,0 +1,145 @@
+/* CartView.css */
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animación de salida */
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  .cart-view-container {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s forwards; /* Aplica la animación de entrada */
+    overflow-y: scroll; /* Agrega scroll vertical si es necesario */
+  }
+  
+  .cart-view-container.hidden {
+    animation: slideOut 0.3s forwards; /* Aplica la animación de salida */
+  }
+  
+  .cart-items {
+    max-height: calc(100% - 60px); /* Ajusta la altura máxima con scroll */
+    overflow-y: auto; /* Agrega scroll vertical si es necesario */
+    padding: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item-image {
+    width: 80px; /* Tamaño máximo para la imagen */
+    height: 80px; /* Tamaño máximo para la imagen */
+    margin-right: 10px;
+  }
+  
+  .cart-item-details {
+    flex: 1;
+  }
+  
+  .cart-item-details h3 {
+    font-size: 16px; /* Tamaño de fuente para el título */
+    margin: 0;
+  }
+  
+  .cart-item-details p {
+    font-size: 14px; /* Tamaño de fuente para el texto */
+    margin: 0;
+  }
+  
+  .remove-button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px; /* Tamaño de fuente para el botón */
+  }
+
+  .carrito-cerrar-container {
+    padding-top: 90px;
+  }
+
+  
+  
+  .checkout-button {
+    display: block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px; /* Tamaño de fuente para el botón */
+  }
+  
+  .checkout-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* TotalContainer.css */
+
+.total-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .total-container p {
+    margin: 5px 0;
+  }
+  
+  .payment-actions {
+    margin-top: 20px;
+  }
+  
+  .payment-form {
+    display: none;
+  }
+  
+  .payment-success {
+    margin-top: 20px;
+  }
+  
+  .payment-success p {
+    font-weight: bold;
+  }
+  
+  .payment-success a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .payment-success a:hover {
+    background-color: #0056b3;
+  }
+  

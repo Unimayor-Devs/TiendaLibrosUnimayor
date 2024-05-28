@@ -1,27 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllBooks, deleteBook } from '../../../services/bookService';
-import Navbar from '../../../components/Navbar';
-import './UserBookScreen.css';
+import { getAllBooks } from '../../../services/bookService';
+import '../../GestionLibros/User/UserBookScreen.css';
 import { AuthContext } from '../../../context/AuthContext'; // Importa el contexto de autenticación
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const UserBookScreen = () => {
+const InventoryBooks = () => {
   const navigate = useNavigate();
   const { userRole } = useContext(AuthContext); // Obtén el rol del usuario del contexto de autenticación
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const formatCurrency = (value) => {
-    return `$ ${value.toLocaleString()}`;
-  };
-
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const booksData = await getAllBooks();
-        setBooks(booksData);
+        const booksWithoutInvId = booksData.filter(book => !book.invBookId); // Filtrar libros sin invBookId
+        setBooks(booksWithoutInvId);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -30,22 +24,16 @@ const UserBookScreen = () => {
     fetchBooks();
   }, []);
 
-  const handleDeleteBook = async (bookId) => {
-    const confirmDelete = window.confirm(`¿Estás seguro de que quieres borrar este libro?`);
-    
-    if (confirmDelete) {
-      try {
-        await deleteBook(bookId);
-        setBooks(books.filter(book => book.id !== bookId));
-        window.alert('Libro borrado exitosamente'); // Mostrar alerta de éxito
-      } catch (error) {
-        console.error('Error deleting book:', error);
-      }
-    }
-  };
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleCancel = () => {
+    navigate('/inventory'); // Si el usuario decide cancelar, simplemente lo redirigimos de vuelta a la página del inventario
+  };
+
+  const formatCurrency = (value) => {
+    return `$ ${value.toLocaleString()}`;
   };
 
   const filteredBooks = books.filter(book =>
@@ -60,9 +48,9 @@ const UserBookScreen = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="user-books-container">
-        <h1>Mis Libros</h1>
+        <button className="button-primary" type="button" onClick={handleCancel}>Volver</button>
+        <h1>Libros Registrados</h1>
         <div className="search-bar-container">
           <input
             type="text"
@@ -71,29 +59,14 @@ const UserBookScreen = () => {
             onChange={handleSearch}
             className="search-bar"
           />
-          {userRole === 'admin' && (
-            <button className="button button-primary" onClick={() => navigate('/books/add')}>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
-          )}
         </div>
         <div className="book-list">
           {sortedBooks.length === 0 ? (
             <p className="no-books-message">Aún no hay libros registrados.</p>
           ) : (
             sortedBooks.map(book => (
-              <div key={book.id} className="book-card">
+              <Link key={book.id} to={`/inventory/books/${book.id}/add`} className="book-card">
                 <div className="book-card-inside">
-                  <div className="book-actions">
-                    {userRole === 'admin' && (
-                      <>
-                        <Link to={`/books/${book.id}/edit`} className="button button-primary">
-                          <FontAwesomeIcon icon={faEdit}/>
-                        </Link>
-                        <FontAwesomeIcon icon={faTrash} className="button button-danger" onClick={() => handleDeleteBook(book.id)} />
-                      </>
-                    )}
-                  </div>
                   <div className="book-content">
                     <img src={book.imageUrl} alt={book.title} />
                     <div className="book-details">
@@ -103,11 +76,8 @@ const UserBookScreen = () => {
                       <p className="precio"><strong>Valor:</strong> {formatCurrency(book.value)}</p>
                     </div>
                   </div>
-                  <div className="book-description">
-                    <p>{book.description}</p>
-                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
@@ -116,4 +86,4 @@ const UserBookScreen = () => {
   );
 };
 
-export default UserBookScreen;
+export default InventoryBooks;

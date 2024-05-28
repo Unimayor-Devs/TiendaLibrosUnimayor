@@ -3,6 +3,24 @@ import { getAuth, EmailAuthProvider, reauthenticateWithCredential, updatePasswor
 import { firebaseFirestore } from './FirebaseService';
 import fetch from 'node-fetch';
 
+  // Función para obtener los datos del usuario por su UID
+  export const fetchUser = async (userId) => {
+    try {
+      const userDoc = doc(firebaseFirestore, 'users', userId);
+      const userSnapshot = await getDoc(userDoc);
+
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.data();
+        return userData;
+      } else {
+        throw new Error('No se encontró el usuario');
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos del usuario:', error);
+      throw error;
+    }
+  };
+
   //Función Obtener Usuarios
   export const getUsers = async () => {
     try {

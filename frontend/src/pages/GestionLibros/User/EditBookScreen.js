@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getBookById, editBook } from '../../../services/bookService';
 import { useNavigate, useParams } from 'react-router-dom';
 import './EditBookScreen.css';
-import './common-styles.css';
 
 const EditBookScreen = () => {
   const { bookId } = useParams(); // Obtener el ID del libro de los parámetros de la URL
@@ -32,8 +31,18 @@ const EditBookScreen = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Si el nombre del campo es "value", convertimos el valor a un número
-    const newValue = name === 'value' ? parseFloat(value) : value;
+    let newValue = value;
+
+    if (name === 'value') {
+      // Asegúrate de que newValue es una cadena antes de usar replace
+      newValue = String(newValue).replace(/[^\d.]/g, '');
+
+      const decimalCount = (newValue.match(/\./g) || []).length;
+      if (decimalCount > 1) {
+        newValue = newValue.slice(0, -1);
+      }
+    }
+
     setBookData({ ...bookData, [name]: newValue });
   };
 
@@ -42,7 +51,13 @@ const EditBookScreen = () => {
     const confirmEdit = window.confirm('¿Está seguro de editar este libro?');
     if (confirmEdit) {
       try {
-        await editBook(bookId, bookData); // Llamar a la función para editar el libro
+        // Asegúrate de que bookData.value es una cadena antes de usar replace y convertir a número
+        const numericValue = parseFloat(String(bookData.value).replace(/[^\d.]/g, ''));
+        if (isNaN(numericValue)) {
+          alert('El valor ingresado no es un número válido.');
+          return;
+        }
+        await editBook(bookId, { ...bookData, value: numericValue });
         alert('Libro editado exitosamente');
         navigate('/books');
       } catch (error) {
