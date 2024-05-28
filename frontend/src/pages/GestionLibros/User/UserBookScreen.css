@@ -1,4 +1,7 @@
 /* Estilos para la lista de libros de usuario */
+.general{background-color: #DCBC6C;
+  background-image: url("D:\Documentos\brain storm\ing.informatica\10 semestre\Aseguramineto de la calidad y pruebas\venta libros\TiendaLibrosUnimayor\frontend\src\pages\GestionLibros\fotolibro.jpg");
+}
 .user-books-container {
   max-width: 1200px;
   margin: 0 auto;

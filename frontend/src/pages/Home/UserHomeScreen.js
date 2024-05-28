@@ -7,7 +7,7 @@ const UserHomeScreen = () => {
   const { userRole } = useAuth(); // Obtén el rol del usuario
 
   return (
-    <div>
+    <div className='general'>
       <div>
         <Navbar /> {/* Renderiza la barra de navegación */}
       </div>

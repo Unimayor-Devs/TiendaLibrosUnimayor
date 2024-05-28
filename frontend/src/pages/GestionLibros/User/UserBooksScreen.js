@@ -60,7 +60,7 @@ const UserBookScreen = () => {
   });
 
   return (
-    <div>
+    <div className='general'>
       <Navbar />
       <div className="user-books-container">
         <h1>Mis Libros</h1>
