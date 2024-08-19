@@ -59,20 +59,20 @@ git clone https://github.com/Unimayor-Devs/TiendaLibrosUnimayor.git
 https://desktop.github.com/
 
 ### 3. Ejecución local Frontend (React)
-- Abre la carpeta "Frontend" del proyecto en tu editor de código.
+- Abre la carpeta 📁frontend del proyecto con tu editor de código.
 
 ```
 📁TiendaLibrosUnimayor
 └📁frontend
 ```
 
-- También puedes utilizar la consola de tu editor de código para acceder a la carpeta "Frontend".
+- También puedes utilizar la consola de tu editor de código para acceder a la carpeta 📁frontend.
 
 ```bash
 cd frontend
 ```
 
-- Antes de ejecutar el proyecto instala los modulos de node necesarios con el siguiente código en la carpeta "Frontend":
+- Antes de ejecutar el proyecto instala los modulos de node necesarios con el siguiente código en la carpeta 📁frontend:
 ```bash
 npm install
 ```
