@@ -7,7 +7,7 @@ https://tiendalibrosunimayor.web.app/
 
 ## Descripción del Proyecto
 
-La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión de libros en línea. Proporciona a los usuarios la capacidad de explorar un catálogo de libros, realizar compras seguras utilizando la integración con la API de Mercado Pago, y gestionar cuentas de usuario.
+La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión de libros en línea. Proporciona a los usuarios la capacidad de explorar un catálogo de libros, realizar compras seguras, y gestionar cuentas de usuario. Además de darle al rol administrador la capacidad de gestionar todo el sistema.
 
 ## Tecnologías Utilizadas
 
