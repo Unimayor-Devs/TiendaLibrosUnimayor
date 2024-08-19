@@ -66,13 +66,13 @@ https://desktop.github.com/
 └📁frontend
 ```
 
-- También puedes utilizar la consola de tu editor de código para acceder a la carpeta 📁frontend.
+- También puedes utilizar la consola de tu editor de código para acceder a la carpeta 📁frontend desde 📁TiendaLibrosUnimayor.
 
 ```bash
 cd frontend
 ```
 
-- Antes de ejecutar el proyecto instala los modulos de node necesarios con el siguiente código en la carpeta 📁frontend:
+- Antes de ejecutar el proyecto instala los modulos de node necesarios con el siguiente código dentro de la carpeta 📁frontend:
 ```bash
 npm install
 ```
