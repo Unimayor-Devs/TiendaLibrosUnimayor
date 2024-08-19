@@ -37,29 +37,45 @@ La TiendaLibrosUnimayor es una aplicación web destinada a la venta y gestión d
 Sigue estos pasos para configurar y ejecutar el proyecto localmente:
 
 ### 1. Instalar node.js y npm (Administrador de paquetes de Node.js)
-Puedes verificar la instalación con
+
+Puedes desgargar e instalar Node.js directamente desde su sitio web https://nodejs.org/en/ (Esta instalación incluye Node.js y npm)
+
+Puedes verificar la instalación con:
 ```bash
 node --version
 npm --version
 ```
+Instalaste exitosamente si al ejecutar los comandos anteriores te aparece la versión de instalación.
 
-### 2. Instalación de FirebaseCli
-```bash
-npm install -g firebase-tools
-```
+### 2. Clonar este repositorio
+- Instala Git en caso de no tenerlo instalado, puedes descargarlo desde: https://git-scm.com/downloads.
+- Clona este repositorio ejecutando el siguiente código con la herramienta Git Bash:
 
-### 3. Clonar este repositorio
-- Puedes clonar este repositorio con este código
 ```bash
 git clone https://github.com/Unimayor-Devs/TiendaLibrosUnimayor.git
-cd TiendaLibrosUnimayor
 ```
 
-- O también puedes utilizar la herramienta GitHub Desktop
+- También puedes utilizar la herramienta GitHub Desktop
 https://desktop.github.com/
 
-### 4. Ejecución local Frontend (React)
+### 3. Ejecución local Frontend (React)
+- Abre la carpeta "Frontend" del proyecto en tu editor de código.
+
+📁TiendaLibrosUnimayor
+└📁frontend
+
+- También puedes utilizar la consola de tu editor de código para acceder a la carpeta "Frontend".
+
 ```bash
 cd frontend
+```
+
+- Antes de ejecutar el proyecto instala los modulos de node necesarios con el siguiente código en la carpeta "Frontend":
+```bash
+npm install
+```
+
+- Ejecuta el proyecto localmente 
+```bash
 npm start
 ```
