@@ -61,8 +61,10 @@ https://desktop.github.com/
 ### 3. Ejecución local Frontend (React)
 - Abre la carpeta "Frontend" del proyecto en tu editor de código.
 
-- 📁TiendaLibrosUnimayor
-- └📁frontend
+```
+📁TiendaLibrosUnimayor
+└📁frontend
+```
 
 - También puedes utilizar la consola de tu editor de código para acceder a la carpeta "Frontend".
 
