@@ -1,9 +1,12 @@
-# TiendaLibrosUnimayor
+[# TiendaLibrosUnimayor
 
 Este proyecto es una tienda en línea desarrollada como parte de las materias Formulación y Evaluación de Proyectos y Aseguramiento de la Calidad de Software y Pruebas de Ingeniería Informática de la Institución Universitaria Colegio Mayor del Cauca. Permite gestionar libros mediante operaciones CRUD, gestionar usuarios y procesar pagos.
 
 Visitala en:
 https://tiendalibrosunimayor.web.app/
+
+Visita Los Nuevos Mockups en:
+https://xd.adobe.com/view/2e7d52e0-dfd6-40c2-a5f1-a8bc586a95e4-7b2e/
 
 ## Descripción del Proyecto
 
@@ -81,3 +84,4 @@ npm install
 ```bash
 npm start
 ```
+](https://xd.adobe.com/view/2e7d52e0-dfd6-40c2-a5f1-a8bc586a95e4-7b2e/)
